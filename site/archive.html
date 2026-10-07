@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能晨报 · 全部往期</title>
+<title>Hi, AI · 全部往期</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 
   .masthead { text-align: center; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
-  h1.mast { font-family: var(--mast); font-weight: 400; font-size: clamp(58px, 11vw, 96px); letter-spacing: .06em; line-height: 1.1; margin: 4px 0 0; }
+  h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
   .motto { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .1em; }
   .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
@@ -72,7 +72,14 @@
   .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .colophon .seal-mark { font-family: var(--mast); font-size: 18px; color: var(--seal); letter-spacing: .1em; }
+  .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
+
+  /* 本期数字 */
+  .stats { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding: 16px 0 14px; }
+  .stat { flex: 1; min-width: 96px; text-align: center; border-left: 1px solid var(--rule); padding: 0 6px; }
+  .stat:first-child { border-left: none; }
+  .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
+  .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
 
   @media (max-width: 640px) {
     .sheet { padding: 30px 18px 60px; }
@@ -85,8 +92,8 @@
 <main class="sheet">
 <header class="masthead">
     <p class="kicker">The AI Morning Post</p>
-    <h1 class="mast">智能晨报<span class="dot">。</span></h1>
-    <p class="motto">全部往期，按日期排列。</p>
+    <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
+    <p class="motto">一份 AI 标记的晨报 · 全部往期，按日期排列。</p>
   </header>
   <div class="double-rule" style="margin-top:18px"></div>
   <section class="archive" style="border-top:none;margin-top:10px;padding-top:0">
@@ -94,7 +101,7 @@
     <a class="all" href="index.html">返回今日头版 →</a>
   </section>
   <footer class="colophon">
-    <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+    <span><span class="seal-mark">Hi, AI</span> · 一份由 AI 标记编排的晨报</span>
     <span><a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>
 </main>

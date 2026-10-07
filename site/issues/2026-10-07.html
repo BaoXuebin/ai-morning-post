@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能晨报 · 第 1 期 · 2026-10-07</title>
+<title>Hi, AI · 第 1 期 · 2026-10-07</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 
   .masthead { text-align: center; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
-  h1.mast { font-family: var(--mast); font-weight: 400; font-size: clamp(58px, 11vw, 96px); letter-spacing: .06em; line-height: 1.1; margin: 4px 0 0; }
+  h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
   .motto { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .1em; }
   .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
@@ -72,7 +72,14 @@
   .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .colophon .seal-mark { font-family: var(--mast); font-size: 18px; color: var(--seal); letter-spacing: .1em; }
+  .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
+
+  /* 本期数字 */
+  .stats { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding: 16px 0 14px; }
+  .stat { flex: 1; min-width: 96px; text-align: center; border-left: 1px solid var(--rule); padding: 0 6px; }
+  .stat:first-child { border-left: none; }
+  .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
+  .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
 
   @media (max-width: 640px) {
     .sheet { padding: 30px 18px 60px; }
@@ -85,8 +92,8 @@
 <main class="sheet">
 <header class="masthead">
     <p class="kicker">The AI Morning Post</p>
-    <h1 class="mast">智能晨报<span class="dot">。</span></h1>
-    <p class="motto">每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
+    <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
+    <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
   </header>
   <div class="dateline">
     <span>2026 年 10 月 7 日 · 星期三</span>
@@ -103,9 +110,27 @@
     <a class="goto" href="https://www.qbitai.com/2026/10/501749.html" target="_blank" rel="noopener">阅读全文 ↗</a>
   </section>
 
+  <section class="stats">
+    <div class="stat"><b>40</b><span>条资讯</span></div>
+<div class="stat"><b>6</b><span>篇论文</span></div>
+<div class="stat"><b>8</b><span>个开源新仓库</span></div>
+<div class="stat"><b>★1825</b><span>最热仓库</span></div>
+<div class="stat"><b>9</b><span>家来源</span></div>
+  </section>
+
   <section class="section">
     <header><h3>要闻</h3><span class="en">Top Stories</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
+    <div class="meta"><b>【ArsTechnica AI】</b>04:50</div>
+    <h4><a href="https://arstechnica.com/ai/2026/10/openai-will-watermark-chatgpt-outputs-by-default-but-only-in-the-eu/" target="_blank" rel="noopener">OpenAI 将默认给 ChatGPT 输出加水印——但只在欧盟</a></h4>
+    <p>OpenAI 宣布将在欧盟自动为 ChatGPT 生成的文本加水印。其他地区也会提供这一功能，但默认关闭。欧洲此举是………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【ArsTechnica AI】</b>20:21</div>
+    <h4><a href="https://arstechnica.com/security/2026/10/openai-agents-tried-to-hack-wikipedia-tools-and-flooded-it-with-traffic/" target="_blank" rel="noopener">维基媒体：OpenAI 的 Agent 试图破解其工具，还挤爆了服务器</a></h4>
+    <p>维基媒体基金会周一表示，OpenAI 的 Agent 试图入侵其托管的笔记工具、擅自改动内容，还向基础设施发送了数百万个高消耗请求，………</p>
+  </article>
+<article class="brief">
     <div class="meta"><b>【量子位】</b>18:44</div>
     <h4><a href="https://www.qbitai.com/2026/10/501746.html" target="_blank" rel="noopener">刚刚，诺贝尔物理奖一人独揽！</a></h4>
     <p>南极洲甚至有一座高地以他名字命名……</p>
@@ -119,10 +144,15 @@
     <div class="meta"><b>【量子位】</b>14:45</div>
     <h4><a href="https://www.qbitai.com/2026/10/501726.html" target="_blank" rel="noopener">OpenAI「疯狂28天」首日，这都发了些啥啊…</a></h4>
     
+  </article>
+<article class="brief">
+    <div class="meta"><b>【ArsTechnica AI】</b>06:26</div>
+    <h4><a href="https://arstechnica.com/security/2026/10/vulnerability-in-agents-from-google-and-others-exposes-structural-flaw-in-mcp/" target="_blank" rel="noopener">MCP：你可能没听过、却最危险的 Agent 通信协议</a></h4>
+    <p>数百万组织采用 AI Agent，也让攻击者有了新机会诱使其执行恶意动作，比如拖库、窃取业务与个人信息。过去五个月，谷歌和………</p>
   </article></div>
   </section>
 <section class="section">
-    <header><h3>研究前沿</h3><span class="en"></span><div class="rule"></div></header>
+    <header><h3>研究前沿</h3><span class="en">Research</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【arXiv 论文】</b>01:59</div>
     <h4><a href="https://arxiv.org/abs/2610.08789v1" target="_blank" rel="noopener">QF3：用过滤 Q 梯度加速流策略强化学习</a></h4>
@@ -152,34 +182,19 @@
     <div class="meta"><b>【arXiv 论文】</b>01:58</div>
     <h4><a href="https://arxiv.org/abs/2610.08778v1" target="_blank" rel="noopener">Sherpa：教大模型学会「因材施教」</a></h4>
     <p>大模型解题能力越来越强，但会解题不等于会教题。现有把 LLM 训练成「老师」的做法依赖演示、偏好数据或预设脚本，………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【arXiv 论文】</b>01:57</div>
-    <h4><a href="https://arxiv.org/abs/2610.08775v1" target="_blank" rel="noopener">瓶中智能体：LLM 能把自己的能力变成廉价可复制的产物吗？</a></h4>
-    <p>大模型能解决许多窄任务，但如果数百万个相似实例都要单独查询，成本会高得离谱。LLM 智能体能否自主为这类工作负载造出更便宜的方案？论文把这种能力称为「装瓶」。………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【arXiv 论文】</b>01:56</div>
-    <h4><a href="https://arxiv.org/abs/2610.08773v1" target="_blank" rel="noopener">AdvSim2Real：在网络世界模型里训练能抗提示注入的网页 Agent</a></h4>
-    <p>网页 Agent 要读取并操作第三方编写的页面，页面上埋的一条恶意指令就能把它带偏。可 Agent 又不能无视页面，因为任务所需的值就在页面上。………</p>
   </article></div>
   </section>
 <section class="section">
     <header><h3>产品与发布</h3><span class="en">Products & Launches</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
-    <div class="meta"><b>【TechCrunch AI】</b>06:34</div>
-    <h4><a href="https://techcrunch.com/2026/10/06/ex-ramp-engineers-raise-20m-for-platform-melius-after-scrapping-their-first-product/" target="_blank" rel="noopener">Ramp 前工程师再创业：砍掉首个产品后，为 Melius 融资 2000 万美元</a></h4>
-    <p>公司不再帮营销人员管理和优化广告投放，而是转向打造能生成创意素材和整套营销活动的工具。……</p>
+    <div class="meta"><b>【The Verge AI】</b>07:26</div>
+    <h4><a href="https://www.theverge.com/ai-artificial-intelligence/1005004/openai-math-release-github" target="_blank" rel="noopener">OpenAI 再放出一批数学突破：722 篇论文覆盖 372 组成果</a></h4>
+    <p>OpenAI 公布了一个未发布的前沿模型解出的多个长期悬而未决的数学问题，共 722 篇手稿、归并为 372 组相关成果。………</p>
   </article>
 <article class="brief">
     <div class="meta"><b>【TechCrunch AI】</b>04:35</div>
     <h4><a href="https://techcrunch.com/2026/10/06/how-ai-decision-models-could-change-content-moderation/" target="_blank" rel="noopener">AI 决策模型会如何改变内容审核</a></h4>
     <p>本周二，Musubi 发布了专为实时审核打造的轻量决策模型 PolicyLM-1.7B，并以开放权重形式释出。……</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【TechCrunch AI】</b>04:00</div>
-    <h4><a href="https://techcrunch.com/2026/10/06/ai-computing-startup-lambda-to-raise-4b-ahead-of-planned-ipo/" target="_blank" rel="noopener">AI 算力公司 Lambda 计划 IPO 前融资 40 亿美元</a></h4>
-    <p>获英伟达投资的 Lambda 正在以 145 亿美元投前估值筹集至多 40 亿美元，由 Coatue 和黑石领投，计划 2027 年上市。……</p>
   </article>
 <article class="brief">
     <div class="meta"><b>【TechCrunch AI】</b>03:56</div>
@@ -197,37 +212,17 @@
     <p>Mirror Particle 将在 TechCrunch Disrupt 创业竞技场亮相，它从零构建了一个预测人类行为的世界模型，并认为用 LLM 角色扮演做市场调研并不够用。……</p>
   </article>
 <article class="brief">
-    <div class="meta"><b>【OpenAI News】</b>00:00</div>
-    <h4><a href="https://openai.com/index/atlassian-partnership" target="_blank" rel="noopener">Atlassian 与 OpenAI 扩大合作，把企业知识变成行动</a></h4>
-    <p>双方将深化合作，把前沿模型接入企业知识库，帮助团队规划、构建和交付工作。……</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【TechCrunch AI】</b>00:00</div>
-    <h4><a href="https://techcrunch.com/2026/10/06/anthropic-gives-startups-a-free-year-of-enterprise-service-and-1000-in-token-credits/" target="_blank" rel="noopener">Anthropic 送初创公司一年免费 Claude Team 外加 1000 美元额度</a></h4>
-    <p>「我们做这个计划，是因为相信 AI 的好处会通过在模型之上构建产品的公司触达大多数人，而不是只靠模型本身。」……</p>
+    <div class="meta"><b>【The Verge AI】</b>00:29</div>
+    <h4><a href="https://www.theverge.com/column/1005697/we-cant-just-change-the-definition-of-recording" target="_blank" rel="noopener">「录音」的定义，不能就这么被改掉</a></h4>
+    <p>借着 AI 硬件，科技公司正在改写「什么算录音」的定义。电子产品诞生以来，「带麦克风或摄像头的设备要么在录你、要么没在录」一直是个合理的假设，………</p>
   </article></div>
   </section>
 <section class="section">
     <header><h3>开源与社区</h3><span class="en">Open Source</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
-    <div class="meta"><b>【Hacker News】</b>07:50</div>
-    <h4><a href="https://www.reuters.com/world/south-koreas-lee-says-ai-appears-have-been-used-bank-hacks-2026-10-06/" target="_blank" rel="noopener">韩国：疑似有 AI Agent 被用来入侵该国银行</a></h4>
-    
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>05:59</div>
-    <h4><a href="https://penguin-mail.com/" target="_blank" rel="noopener">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI</a></h4>
-    
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>02:00</div>
-    <h4><a href="https://www.zohaib.cc/blog/smartest-claude-code-feature" target="_blank" rel="noopener">Claude Code 的建议消息功能：真正的顾客或许是模型本身</a></h4>
-    
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>01:01</div>
-    <h4><a href="https://www.techspot.com/news/114111-utah-become-first-state-ai-examine-patients-prescribe.html" target="_blank" rel="noopener">犹他州将允许 AI 在无人工监督下问诊和开药</a></h4>
-    
+    <div class="meta"><b>【InfoQ 中文】</b>18:00</div>
+    <h4><a href="https://www.infoq.cn/article/u70P77XPmsXmRBciu6fL?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">AI + SRE ≠ AISRE：AI 如何真正进入生产运维闭环｜QCon上海</a></h4>
+    <p>点击查看原文&gt;……</p>
   </article>
 <article class="brief">
     <div class="meta"><b>【GitHub】</b>16:57</div>
@@ -248,6 +243,62 @@
     <div class="meta"><b>【GitHub】</b>09:38</div>
     <h4><a href="https://github.com/DozenTwelve/Papermorph" target="_blank" rel="noopener">Papermorph：把一本书变成可交互的动画网页体验</a></h4>
     <p>一个 AI 技能，能把书籍转成带旁白、可交互的动画网页。（★ 460）……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【GitHub】</b>08:59</div>
+    <h4><a href="https://github.com/blendi-remade/agentcraft" target="_blank" rel="noopener">blendi-remade/agentcraft</a></h4>
+    <p>（暂无描述）（★ 421）……</p>
+  </article></div>
+  </section>
+<section class="section">
+    <header><h3>行业与资本</h3><span class="en">Business & Funding</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>06:34</div>
+    <h4><a href="https://techcrunch.com/2026/10/06/ex-ramp-engineers-raise-20m-for-platform-melius-after-scrapping-their-first-product/" target="_blank" rel="noopener">Ramp 前工程师再创业：砍掉首个产品后，为 Melius 融资 2000 万美元</a></h4>
+    <p>公司不再帮营销人员管理和优化广告投放，而是转向打造能生成创意素材和整套营销活动的工具。……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>04:00</div>
+    <h4><a href="https://techcrunch.com/2026/10/06/ai-computing-startup-lambda-to-raise-4b-ahead-of-planned-ipo/" target="_blank" rel="noopener">AI 算力公司 Lambda 计划 IPO 前融资 40 亿美元</a></h4>
+    <p>获英伟达投资的 Lambda 正在以 145 亿美元投前估值筹集至多 40 亿美元，由 Coatue 和黑石领投，计划 2027 年上市。……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>00:00</div>
+    <h4><a href="https://techcrunch.com/2026/10/06/anthropic-gives-startups-a-free-year-of-enterprise-service-and-1000-in-token-credits/" target="_blank" rel="noopener">Anthropic 送初创公司一年免费 Claude Team 外加 1000 美元额度</a></h4>
+    <p>「我们做这个计划，是因为相信 AI 的好处会通过在模型之上构建产品的公司触达大多数人，而不是只靠模型本身。」……</p>
+  </article></div>
+  </section>
+<section class="section">
+    <header><h3>社区热议</h3><span class="en">Community Buzz</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【Hacker News】</b>07:50</div>
+    <h4><a href="https://www.reuters.com/world/south-koreas-lee-says-ai-appears-have-been-used-bank-hacks-2026-10-06/" target="_blank" rel="noopener">韩国：疑似有 AI Agent 被用来入侵该国银行</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>05:59</div>
+    <h4><a href="https://penguin-mail.com/" target="_blank" rel="noopener">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>02:54</div>
+    <h4><a href="https://news.ycombinator.com/item?id=49982498" target="_blank" rel="noopener">Photopea 开发者吐槽：GitHub 一个月了都不肯下架我软件的破解版</a></h4>
+    <p>网页版修图工具 Photopea 的开发者发文称，很多人让 AI 模型抓取他网站的 JS 代码、去掉广告，当作「新产品」发布到 GitHub，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>02:00</div>
+    <h4><a href="https://www.zohaib.cc/blog/smartest-claude-code-feature" target="_blank" rel="noopener">Claude Code 的建议消息功能：真正的顾客或许是模型本身</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>01:01</div>
+    <h4><a href="https://www.techspot.com/news/114111-utah-become-first-state-ai-examine-patients-prescribe.html" target="_blank" rel="noopener">犹他州将允许 AI 在无人工监督下问诊和开药</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>00:23</div>
+    <h4><a href="https://github.com/FeSens/openTPU" target="_blank" rel="noopener">OpenTPU：一个由 AI 自己开发的开源 AI 加速器</a></h4>
+    
   </article></div>
   </section>
 <section class="section">
@@ -281,16 +332,6 @@
     <div class="meta"><b>【Simon Willison】</b>04:18</div>
     <h4><a href="https://simonwillison.net/2026/Oct/6/le-chonk/" target="_blank" rel="noopener">Mistral Large 4 发布：万亿参数，「Le chonk」回归牌桌</a></h4>
     <p>Mistral 重新回到了牌桌。Mistral Large 4 预览版有 1 万亿总参数、490 亿激活参数，在他们自己的 3800 块 NVIDIA Grace Blackwell GPU 集群上训练。………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Simon Willison】</b>03:07</div>
-    <h4><a href="https://simonwillison.net/2026/Oct/6/datasette-parseable-opentelemetry/" target="_blank" rel="noopener">今天学到的：用 Parseable 配 Datasette 看 OpenTelemetry 链路</a></h4>
-    <p>Parseable 是今天 Show HN 上的新品：一个开源（AGPL）的可观测性平台，Rust 实现、单个约 180MB 的二进制，另有功能更多的企业版。………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Simon Willison】</b>02:20</div>
-    <h4><a href="https://simonwillison.net/2026/Oct/6/hn-49982139/" target="_blank" rel="noopener">Mistral Large 4：HN 上的一条神评论</a></h4>
-    <p>有人吐槽基准测试已经饱和：「前沿模型的测试题，是一只穿渔网袜的犰狳在火星上乱穿马路。」作者没忍住，真让 Claude Opus 5.5 生成了一张这样的 SVG。………</p>
   </article></div>
   </section>
 
@@ -301,7 +342,7 @@
   </section>
 
   <footer class="colophon">
-    <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+    <span><span class="seal-mark">Hi, AI</span> · 一份由 AI 标记编排的晨报</span>
     <span>内容来自公开 RSS 源，版权归原作者所有 · <a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>
 </main>

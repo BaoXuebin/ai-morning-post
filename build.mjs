@@ -12,7 +12,11 @@ const MAX_PER_FEED = 40;
 const EXCERPT_LEN = 260;
 const WINDOW_HOURS = 36;   // 当期收录最近多久的内容
 const MIN_ITEMS = 8;       // 当期最少条数，不足则回退到最近文章
-const SECTIONS = ['要闻', '研究前沿', '产品与发布', '开源与社区', '观点与随笔'];
+const SECTIONS = ['要闻', '研究前沿', '产品与发布', '开源与社区', '行业与资本', '社区热议', '观点与随笔'];
+
+// 资本类关键词条目自动归入「行业与资本」
+const FUNDING_RE =
+  /(raise[sd]?\s|funding|series [a-z]\b|\bipo\b|acquir|\bvaluation\b|merger|\$\d[\d.,]*\s*(billion|million|bn|mm?)?\b|\d(\.\d+)?\s*(billion|million)\b|融资|收购|上市|估值|亿美元|万美元|千万美元)/i;
 
 const tKey = (s) => createHash('md5').update(s).digest('hex').slice(0, 12);
 
@@ -214,6 +218,10 @@ deduped.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
 // ---------- 选当期文章 ----------
 const now = Date.now();
+// 资本类关键词条目跨源重新归类（仓库条目除外）
+for (const a of deduped) {
+  if (!a.force && FUNDING_RE.test(a.title)) a.category = '行业与资本';
+}
 const inWindow = deduped.filter(
   (a) =>
     a.force ||
@@ -232,7 +240,7 @@ const headline = [...pool]
   )[0];
 
 // 各版块单独限额，避免一个源把其他版块挤掉
-const PER_SECTION = 8;
+const PER_SECTION = 6;
 const sections = SECTIONS.map((name) => ({
   name,
   items: pool
@@ -247,6 +255,20 @@ if (!today.length) {
   console.error('没有任何可用文章，终止（不覆盖已有版面）');
   process.exit(1);
 }
+
+// 本期数字（报纸的「By the numbers」栏）
+const ghAll = pool.filter((a) => a.source === 'GitHub');
+const maxStars = ghAll.reduce((m, a) => {
+  const s = (a.excerpt.match(/★\s*([\d,]+)/) || [])[1];
+  return s ? Math.max(m, +s.replace(/,/g, '')) : m;
+}, 0);
+const stats = [
+  { v: today.length, label: '条资讯' },
+  { v: today.filter((a) => a.category === '研究前沿').length, label: '篇论文' },
+  { v: ghAll.length, label: '个开源新仓库' },
+  ...(maxStars ? [{ v: '★' + maxStars, label: '最热仓库' }] : []),
+  { v: new Set(today.map((a) => a.source)).size, label: '家来源' },
+];
 
 // ---------- 翻译：英文条目若有译文则替换，否则进入翻译队列 ----------
 const translationsPath = join(ROOT, 'translations.json');
@@ -279,8 +301,7 @@ const existing = manifest.find((m) => m.date === dateK);
 const dayDiff = Math.floor((new Date(dateK + 'T00:00:00+08:00') - launch) / 86400000) + 1;
 const finalNo = existing ? existing.no : dayDiff;
 
-const entry = { date: dateK, no: finalNo, headline: headline.title };
-const manifestSaved = existing
+const entry = { date: dateK, no: finalNo, headline: headline.title };const manifestSaved = existing
   ? manifest.map((m) => (m.date === dateK ? entry : m))
   : [...manifest, entry].sort((a, b) => a.date.localeCompare(b.date));
 
@@ -314,7 +335,7 @@ const CSS = `
 
   .masthead { text-align: center; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
-  h1.mast { font-family: var(--mast); font-weight: 400; font-size: clamp(58px, 11vw, 96px); letter-spacing: .06em; line-height: 1.1; margin: 4px 0 0; }
+  h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
   .motto { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .1em; }
   .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
@@ -362,7 +383,14 @@ const CSS = `
   .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .colophon .seal-mark { font-family: var(--mast); font-size: 18px; color: var(--seal); letter-spacing: .1em; }
+  .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
+
+  /* 本期数字 */
+  .stats { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding: 16px 0 14px; }
+  .stat { flex: 1; min-width: 96px; text-align: center; border-left: 1px solid var(--rule); padding: 0 6px; }
+  .stat:first-child { border-left: none; }
+  .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
+  .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
 
   @media (max-width: 640px) {
     .sheet { padding: 30px 18px 60px; }
@@ -402,11 +430,11 @@ function briefHTML(a) {
 
 // ---------- 当期首页 ----------
 const indexHTML = page(
-  `智能晨报 · 第 ${finalNo} 期`,
+  `Hi, AI · 第 ${finalNo} 期`,
   `<header class="masthead">
     <p class="kicker">The AI Morning Post</p>
-    <h1 class="mast">智能晨报<span class="dot">。</span></h1>
-    <p class="motto">每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
+    <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
+    <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
   </header>
   <div class="dateline">
     <span>${fmtCN(dateK)}</span>
@@ -423,11 +451,15 @@ const indexHTML = page(
     <a class="goto" href="${esc(headline.link)}" target="_blank" rel="noopener">阅读全文 ↗</a>
   </section>
 
+  <section class="stats">
+    ${stats.map((s) => `<div class="stat"><b>${s.v}</b><span>${s.label}</span></div>`).join('\n')}
+  </section>
+
   ${sections
     .map(
       (s) => `<section class="section">
     <header><h3>${s.name}</h3><span class="en">${
-      { 要闻: 'Top Stories', 产品与发布: 'Products & Launches', 开源与社区: 'Open Source', 观点与随笔: 'Opinions' }[s.name] || ''
+      { 要闻: 'Top Stories', 研究前沿: 'Research', 产品与发布: 'Products & Launches', 开源与社区: 'Open Source', 行业与资本: 'Business & Funding', 社区热议: 'Community Buzz', 观点与随笔: 'Opinions' }[s.name] || ''
     }</span><div class="rule"></div></header>
     <div class="briefs">${s.items.map(briefHTML).join('\n')}</div>
   </section>`
@@ -445,25 +477,25 @@ const indexHTML = page(
   </section>
 
   <footer class="colophon">
-    <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+    <span><span class="seal-mark">Hi, AI</span> · 一份由 AI 标记编排的晨报</span>
     <span>内容来自公开 RSS 源，版权归原作者所有 · <a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>`
 );
 
 // 当期存档页（与首页同内容，链接改为相对 issues/）
 const issueHTML = indexHTML
-  .replace(`智能晨报 · 第 ${finalNo} 期`, `智能晨报 · 第 ${finalNo} 期 · ${dateK}`)
+  .replace(`Hi, AI · 第 ${finalNo} 期`, `Hi, AI · 第 ${finalNo} 期 · ${dateK}`)
   .replaceAll('href="issues/', 'href="../issues/')
   .replaceAll('href="archive.html"', 'href="../archive.html"');
 writeFileSync(join(SITE, 'issues', `${dateK}.html`), issueHTML);
 
 // 总目录页
 const archiveHTML = page(
-  '智能晨报 · 全部往期',
+  'Hi, AI · 全部往期',
   `<header class="masthead">
     <p class="kicker">The AI Morning Post</p>
-    <h1 class="mast">智能晨报<span class="dot">。</span></h1>
-    <p class="motto">全部往期，按日期排列。</p>
+    <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
+    <p class="motto">一份 AI 标记的晨报 · 全部往期，按日期排列。</p>
   </header>
   <div class="double-rule" style="margin-top:18px"></div>
   <section class="archive" style="border-top:none;margin-top:10px;padding-top:0">
@@ -477,7 +509,7 @@ const archiveHTML = page(
     <a class="all" href="index.html">返回今日头版 →</a>
   </section>
   <footer class="colophon">
-    <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+    <span><span class="seal-mark">Hi, AI</span> · 一份由 AI 标记编排的晨报</span>
     <span><a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>`
 );
