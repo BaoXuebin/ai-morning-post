@@ -1,0 +1,19 @@
+{
+  "name": "智能晨报",
+  "launchDate": "2026-10-07",
+  "feeds": [
+    { "name": "量子位", "url": "https://www.qbitai.com/feed", "category": "要闻" },
+    { "name": "雷峰网", "url": "https://www.leiphone.com/feed", "category": "要闻", "aiOnly": true },
+    {
+      "name": "arXiv 论文",
+      "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI+OR+cat:cs.CL+OR+cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=30",
+      "category": "研究前沿",
+      "lang": "en"
+    },
+    { "name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "category": "产品与发布", "lang": "en" },
+    { "name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "category": "产品与发布", "lang": "en" },
+    { "name": "Hacker News", "url": "https://hnrss.org/frontpage", "category": "开源与社区", "aiOnly": true, "lang": "en" },
+    { "name": "GitHub", "type": "github", "category": "开源与社区", "lang": "en", "query": "ai OR llm OR agent", "days": 7, "limit": 8, "force": true },
+    { "name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "category": "观点与随笔", "lang": "en" }
+  ]
+}

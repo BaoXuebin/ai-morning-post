@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能晨报 · 全部往期</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e6; --paper-deep: #ede6d6; --ink: #26221b; --ink-soft: #5c5548;
+    --ink-faint: #9a917f; --seal: #a5382a; --rule: #c9bfa9; --rule-dark: #26221b;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    --latin: "EB Garamond", Georgia, serif;
+    --mast: "Ma Shan Zheng", "Noto Serif SC", serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.75; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .sheet { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 44px 30px 80px; }
+  a { color: inherit; }
+
+  .masthead { text-align: center; }
+  .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
+  h1.mast { font-family: var(--mast); font-weight: 400; font-size: clamp(58px, 11vw, 96px); letter-spacing: .06em; line-height: 1.1; margin: 4px 0 0; }
+  h1.mast .dot { color: var(--seal); }
+  .motto { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .1em; }
+  .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
+  .dateline::before, .dateline::after { content: ""; flex: 1; max-width: 170px; height: 1px; background: var(--rule); }
+  .dateline .no { color: var(--seal); font-family: var(--latin); letter-spacing: .08em; }
+  .double-rule { margin-top: 20px; border-top: 3px solid var(--rule-dark); border-bottom: 1px solid var(--rule-dark); height: 7px; }
+
+  /* 头条 */
+  .headline { padding: 30px 0 26px; border-bottom: 3px solid var(--rule-dark); }
+  .headline .label { display: inline-block; background: var(--seal); color: var(--paper); font-size: 13px; letter-spacing: .35em; padding: 2px 12px 2px 15px; margin-bottom: 14px; }
+  .headline h2 { font-size: clamp(30px, 5.4vw, 44px); font-weight: 900; line-height: 1.4; }
+  .headline h2 a { text-decoration: none; }
+  .headline h2 a:hover { color: var(--seal); }
+  .headline .meta { margin: 12px 0 10px; font-size: 13px; color: var(--ink-faint); }
+  .headline .meta b { color: var(--seal); font-weight: 600; }
+  .headline .lede { font-size: 16.5px; text-align: justify; color: var(--ink-soft); }
+  .headline .lede::first-letter { font-size: 2.4em; font-weight: 900; float: left; line-height: 1.1; padding: 2px 8px 0 0; color: var(--ink); }
+  .headline .goto { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--seal); letter-spacing: .12em; text-decoration: none; }
+  .headline .goto:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* 版块 */
+  .section { margin-top: 34px; }
+  .section > header { display: flex; align-items: baseline; gap: 16px; }
+  .section > header h3 { font-size: 21px; font-weight: 600; letter-spacing: .3em; }
+  .section > header .en { font-family: var(--latin); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
+  .section > header .rule { flex: 1; height: 3px; background: var(--rule-dark); }
+  .briefs { margin-top: 14px; columns: 2; column-gap: 32px; column-rule: 1px solid var(--rule); }
+  .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .brief h4 { font-size: 17px; font-weight: 600; line-height: 1.55; }
+  .brief h4 a { text-decoration: none; }
+  .brief h4 a:hover { color: var(--seal); }
+  .brief p { margin-top: 6px; font-size: 14px; color: var(--ink-soft); text-align: justify; }
+  .brief .meta { font-size: 12.5px; color: var(--ink-faint); }
+  .brief .meta b { color: var(--seal); font-weight: 600; }
+  .brief .meta a { color: inherit; }
+
+  /* 往期 */
+  .archive { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; }
+  .archive h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
+  .archive ul { list-style: none; margin-top: 10px; columns: 2; column-gap: 32px; }
+  .archive li { font-size: 13.5px; padding: 3px 0; break-inside: avoid; }
+  .archive a { color: var(--ink-soft); text-decoration: none; }
+  .archive a:hover { color: var(--seal); }
+  .archive .all { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--seal); text-decoration: none; letter-spacing: .1em; }
+  .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .colophon .seal-mark { font-family: var(--mast); font-size: 18px; color: var(--seal); letter-spacing: .1em; }
+
+  @media (max-width: 640px) {
+    .sheet { padding: 30px 18px 60px; }
+    .briefs, .archive ul { columns: 1; }
+    .headline .lede::first-letter { font-size: 2em; }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+<header class="masthead">
+    <p class="kicker">The AI Morning Post</p>
+    <h1 class="mast">智能晨报<span class="dot">。</span></h1>
+    <p class="motto">全部往期，按日期排列。</p>
+  </header>
+  <div class="double-rule" style="margin-top:18px"></div>
+  <section class="archive" style="border-top:none;margin-top:10px;padding-top:0">
+    <ul><li><a href="issues/2026-10-07.html">第 1 期 · 2026-10-07</a> — OpenAI一夜甩出722篇数学论文！黎曼霍奇BSD全上阵，数学家：读不过来</li></ul>
+    <a class="all" href="index.html">返回今日头版 →</a>
+  </section>
+  <footer class="colophon">
+    <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+  </footer>
+</main>
+</body>
+</html>
