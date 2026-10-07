@@ -24,7 +24,7 @@
   a { color: inherit; }
 
   .masthead { text-align: center; }
-  .seal svg { width: 44px; height: 44px; display: block; margin: 0 auto 10px; }
+  .seal svg { width: 58px; height: auto; display: block; margin: 0 auto 10px; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
   h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
@@ -85,17 +85,64 @@
   .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
   .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
 
-  @media (max-width: 640px) {
-    .sheet { padding: 30px 18px 60px; }
-    .briefs, .archive ul { columns: 1; }
+  /* 版面导航 / 版面号 / 头版导读（桌面隐藏，移动端启用） */
+  .tabs, .folio, .toc, .next-page { display: none; }
+  .page-front { display: contents; }
+
+  @media (max-width: 768px) {
+    .sheet { padding: 26px 16px 56px; }
+    .seal svg { width: 50px; }
     .headline .lede::first-letter { font-size: 2em; }
+
+    /* 报耳 tab 条 */
+    .tabs {
+      display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      position: sticky; top: 0; z-index: 6;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--rule-dark);
+      margin: 0 -16px; padding: 0 8px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button { flex: none; appearance: none; border: none; background: none; font-family: inherit; font-size: 14px; letter-spacing: .12em; color: var(--ink-soft); padding: 9px 11px; position: relative; cursor: pointer; }
+    .tabs button.active { color: var(--seal); font-weight: 600; }
+    .tabs button.active::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: -1px; height: 3px; background: var(--rule-dark); }
+
+    /* 一次只显示一个版面 */
+    .page-front, .section { display: none; }
+    .page-front.active { display: block; }
+    .section.active { display: block; margin-top: 14px; }
+    .folio { display: block; font-size: 12px; color: var(--ink-faint); letter-spacing: .18em; margin: 12px 0 2px; }
+
+    /* 题图放大为横幅 */
+    .briefs { columns: 1; margin-top: 4px; }
+    .brief .thumb { display: block; float: none; width: 100%; height: 148px; margin: 8px 0; }
+    .archive ul { columns: 1; }
+
+    /* 头版导读 */
+    .toc { display: block; margin-top: 28px; border-top: 3px solid var(--rule-dark); padding-top: 12px; }
+    .toc h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
+    .toc-row { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; appearance: none; border: none; border-bottom: 1px solid var(--rule); background: none; font-family: inherit; font-size: 14px; color: var(--ink); padding: 10px 0; cursor: pointer; }
+    .toc-folio { font-family: var(--latin); color: var(--seal); font-weight: 600; flex: none; }
+    .toc-name { font-weight: 600; flex: none; }
+    .toc-titles { flex: 1; font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-go { flex: none; font-size: 12px; color: var(--seal); }
+
+    /* 翻版按钮 */
+    .next-page { display: block; margin: 22px 0 0 auto; appearance: none; border: 1px solid var(--rule-dark); background: none; font-family: inherit; font-size: 13.5px; letter-spacing: .1em; color: var(--ink); padding: 9px 16px; cursor: pointer; }
+    .next-page:active { background: var(--ink); color: var(--paper); }
+
+    /* 统计栏两行 */
+    .stat { flex: 0 0 50%; border-left: none; border-top: 1px solid var(--rule); padding: 10px 6px 2px; }
+    .stat:nth-child(-n+2) { border-top: none; }
   }
 </style>
 </head>
 <body>
 <main class="sheet">
 <header class="masthead">
-    <div class="seal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="9" fill="#a5382a"/><rect x="6.5" y="6.5" width="51" height="51" rx="6" fill="none" stroke="#f5f0e6" stroke-opacity=".55" stroke-width="1.6"/><text x="32" y="27" font-family="Georgia,'Times New Roman',serif" font-size="15" letter-spacing="2" fill="#f5f0e6" text-anchor="middle">HI</text><text x="32" y="50" font-family="Georgia,'Times New Roman',serif" font-size="24" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text></svg></div>
+    <div class="seal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 132"><rect x="1.5" y="1.5" width="93" height="129" rx="7" fill="#a5382a" stroke="#26221b" stroke-width="3"/><rect x="10" y="10" width="76" height="100" fill="none" stroke="#f5f0e6" stroke-opacity=".8" stroke-width="1.8"/><text x="48" y="52" font-family="Georgia,'Times New Roman',serif" font-size="25" fill="#f5f0e6" text-anchor="middle">Hi</text><line x1="30" x2="66" y1="63" y2="63" stroke="#f5f0e6" stroke-opacity=".7" stroke-width="1"/><text x="48" y="95" font-family="Georgia,'Times New Roman',serif" font-size="28" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text><text x="48" y="124" font-family="Georgia,'Times New Roman',serif" font-size="8.5" letter-spacing="2.5" fill="#f5f0e6" fill-opacity=".85" text-anchor="middle">EST.2026</text></svg></div>
     <p class="kicker">The AI Morning Post</p>
     <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
     <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
@@ -105,8 +152,20 @@
     <span class="no">第 1 期</span>
     <span>晨间八时印行</span>
   </div>
+  <nav class="tabs" aria-label="版面导航">
+    <button data-page="a1" class="active">头版</button>
+    <button data-page="a2">要闻</button>
+    <button data-page="a3">研究</button>
+    <button data-page="a4">产品</button>
+    <button data-page="a5">Agent</button>
+    <button data-page="a6">开源</button>
+    <button data-page="a7">资本</button>
+    <button data-page="a8">社区</button>
+    <button data-page="a9">观点</button>
+  </nav>
   <div class="double-rule"></div>
 
+  <div class="page-front" data-page="a1">
   <section class="headline">
     <span class="label">今日头条</span>
     <h2><a href="https://www.qbitai.com/2026/10/501749.html" target="_blank" rel="noopener">OpenAI一夜甩出722篇数学论文！黎曼霍奇BSD全上阵，数学家：读不过来</a></h2>
@@ -117,14 +176,68 @@
   </section>
 
   <section class="stats">
-    <div class="stat"><b>46</b><span>条资讯</span></div>
+    <div class="stat"><b>42</b><span>条资讯</span></div>
 <div class="stat"><b>6</b><span>篇论文</span></div>
 <div class="stat"><b>8</b><span>个开源新仓库</span></div>
-<div class="stat"><b>★1828</b><span>最热仓库</span></div>
+<div class="stat"><b>★1846</b><span>最热仓库</span></div>
 <div class="stat"><b>10</b><span>家来源</span></div>
   </section>
 
-  <section class="section">
+  <section class="toc">
+    <h3>本期版面</h3>
+    <button class="toc-row" data-goto="a2">
+      <span class="toc-folio">A2</span>
+      <span class="toc-name">要闻</span>
+      <span class="toc-titles">维基媒体：OpenAI 的 Agent 试图破解其工具，还挤爆了服务器；刚刚，诺贝尔物理奖一人独揽！</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a3">
+      <span class="toc-folio">A3</span>
+      <span class="toc-name">研究前沿</span>
+      <span class="toc-titles">QF3：用过滤 Q 梯度加速流策略强化学习；共形预测集能度量信息增益：一个理论视角</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a4">
+      <span class="toc-folio">A4</span>
+      <span class="toc-name">产品与发布</span>
+      <span class="toc-titles">OpenAI 再放出一批数学突破：722 篇论文覆盖 372 组成果；AI 决策模型会如何改变内容审核</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a5">
+      <span class="toc-folio">A5</span>
+      <span class="toc-name">Agent 动态</span>
+      <span class="toc-titles">OpenAI 将默认给 ChatGPT 输出加水印——但只在欧盟；Claude Code 的建议消息功能：真正的顾客或许是模型本身</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a6">
+      <span class="toc-folio">A6</span>
+      <span class="toc-name">开源与社区</span>
+      <span class="toc-titles">AI + SRE ≠ AISRE：AI 如何真正进入生产运维闭环｜QCon上海；elstongun/leviathan：给 Agent 配上大数据集的深度记忆</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a7">
+      <span class="toc-folio">A7</span>
+      <span class="toc-name">行业与资本</span>
+      <span class="toc-titles">Ramp 前工程师再创业：砍掉首个产品后，为 Melius 融资 2000 万美元；AI 算力公司 Lambda 计划 IPO 前融资 40 亿美元</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a8">
+      <span class="toc-folio">A8</span>
+      <span class="toc-name">社区热议</span>
+      <span class="toc-titles">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI；Photopea 开发者吐槽：GitHub 一个月了都不肯下架我软件的破解版</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a9">
+      <span class="toc-folio">A9</span>
+      <span class="toc-name">观点与随笔</span>
+      <span class="toc-titles">引述 Jake Boggan 谈图论悬案；维基媒体项目发现 OpenAI「脱管」Agent 的活动痕迹</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+  </section>
+  </div>
+
+  <section class="section" data-page="a2">
+    <div class="folio">第 A2 版 · 要闻 · 共 6 条</div>
     <header><h3>要闻</h3><span class="en">Top Stories</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【ArsTechnica AI】</b>20:21</div>
@@ -162,8 +275,10 @@
     <h4><a href="https://arstechnica.com/apple/2026/10/command-line-tool-quickly-removes-apple-intelligence-from-macos-27/" target="_blank" rel="noopener">一行命令移除 macOS 27 的 Apple Intelligence</a></h4>
     <p>一个新工具让 Mac 用户重新可以一键关掉 Apple Intelligence，并释放多达 12GB 存储。与旧版 macOS 不同，macOS 27 Golden Gate 没有提供关闭它的开关，………</p>
   </article></div>
+    <button class="next-page" data-goto="a3">下一版 · 研究 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a3">
+    <div class="folio">第 A3 版 · 研究前沿 · 共 6 条</div>
     <header><h3>研究前沿</h3><span class="en">Research</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【arXiv 论文】</b>01:59</div>
@@ -201,8 +316,10 @@
     <h4><a href="https://arxiv.org/abs/2610.08778v1" target="_blank" rel="noopener">Sherpa：教大模型学会「因材施教」</a></h4>
     <p>大模型解题能力越来越强，但会解题不等于会教题。现有把 LLM 训练成「老师」的做法依赖演示、偏好数据或预设脚本，………</p>
   </article></div>
+    <button class="next-page" data-goto="a4">下一版 · 产品 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a4">
+    <div class="folio">第 A4 版 · 产品与发布 · 共 6 条</div>
     <header><h3>产品与发布</h3><span class="en">Products & Launches</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【The Verge AI】</b>07:26</div>
@@ -240,9 +357,11 @@
     <h4><a href="https://www.theverge.com/column/1005697/we-cant-just-change-the-definition-of-recording" target="_blank" rel="noopener">「录音」的定义，不能就这么被改掉</a></h4>
     <p>借着 AI 硬件，科技公司正在改写「什么算录音」的定义。电子产品诞生以来，「带麦克风或摄像头的设备要么在录你、要么没在录」一直是个合理的假设，………</p>
   </article></div>
+    <button class="next-page" data-goto="a5">下一版 · Agent →</button>
   </section>
-<section class="section">
-    <header><h3>Agent 动态</h3><span class="en"></span><div class="rule"></div></header>
+<section class="section" data-page="a5">
+    <div class="folio">第 A5 版 · Agent 动态 · 共 4 条</div>
+    <header><h3>Agent 动态</h3><span class="en">Agent Watch</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【ArsTechnica AI】</b>04:50</div>
     <img class="thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/09/chatgpt-icon-1152x648-1789154124.jpg" alt="" loading="lazy" onerror="this.remove()">
@@ -266,21 +385,11 @@
     
     <h4><a href="https://techcrunch.com/2026/10/05/openai-will-start-watermarking-chatgpts-text-in-the-eu/" target="_blank" rel="noopener">OpenAI 将在欧盟为 ChatGPT 文本加水印</a></h4>
     <p>为遵守《人工智能法案》，OpenAI 将在欧盟为 ChatGPT 和 Codex 的输出文本加水印；公司承认编辑文本会让隐形水印更难检出。……</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【The Verge AI】</b>02:08</div>
-    <img class="thumb" src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK155_OPEN_AI_CVirginia__C.jpg?quality=90&amp;#038;strip=all&amp;#038;crop=0,0,100,100" alt="" loading="lazy" onerror="this.remove()">
-    <h4><a href="https://www.theverge.com/ai-artificial-intelligence/1004880/openai-chatgpt-text-watermarks-eu-ai-act" target="_blank" rel="noopener">OpenAI 在 ChatGPT 和 Codex 中上线文本水印</a></h4>
-    <p>一种隐形、机器可读的文本水印正在 ChatGPT 和 Codex 上线，首批仅面向欧盟用户。OpenAI 称其 textGrain 水印「持平或超过」谷歌 DeepMind 的 SynthID 等方案，………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【The Verge AI】</b>00:55</div>
-    <img class="thumb" src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/12/STK201_SAM_ALTMAN_CVIRGINIA_C.jpg?quality=90&amp;#038;strip=all&amp;#038;crop=0,0,100,100" alt="" loading="lazy" onerror="this.remove()">
-    <h4><a href="https://www.theverge.com/ai-artificial-intelligence/1004827/openai-sam-altman-vanity-fair-interview-pr" target="_blank" rel="noopener">记者追问 ChatGPT 用户自杀事件，OpenAI 公关示意「翻篇」</a></h4>
-    <p>《名利场》编辑把 ChatGPT 用户自杀的话题抛给 Sam Altman 时，OpenAI 公关试图转移话题，还被提醒「谨慎行事」。………</p>
   </article></div>
+    <button class="next-page" data-goto="a6">下一版 · 开源 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a6">
+    <div class="folio">第 A6 版 · 开源与社区 · 共 6 条</div>
     <header><h3>开源与社区</h3><span class="en">Open Source</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【InfoQ 中文】</b>18:00</div>
@@ -318,8 +427,10 @@
     <h4><a href="https://github.com/blendi-remade/agentcraft" target="_blank" rel="noopener">blendi-remade/agentcraft</a></h4>
     <p>（暂无描述）（★ 421）……</p>
   </article></div>
+    <button class="next-page" data-goto="a7">下一版 · 资本 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a7">
+    <div class="folio">第 A7 版 · 行业与资本 · 共 3 条</div>
     <header><h3>行业与资本</h3><span class="en">Business & Funding</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【TechCrunch AI】</b>06:34</div>
@@ -339,16 +450,12 @@
     <h4><a href="https://techcrunch.com/2026/10/06/anthropic-gives-startups-a-free-year-of-enterprise-service-and-1000-in-token-credits/" target="_blank" rel="noopener">Anthropic 送初创公司一年免费 Claude Team 外加 1000 美元额度</a></h4>
     <p>「我们做这个计划，是因为相信 AI 的好处会通过在模型之上构建产品的公司触达大多数人，而不是只靠模型本身。」……</p>
   </article></div>
+    <button class="next-page" data-goto="a8">下一版 · 社区 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a8">
+    <div class="folio">第 A8 版 · 社区热议 · 共 4 条</div>
     <header><h3>社区热议</h3><span class="en">Community Buzz</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
-    <div class="meta"><b>【Hacker News】</b>07:50</div>
-    
-    <h4><a href="https://www.reuters.com/world/south-koreas-lee-says-ai-appears-have-been-used-bank-hacks-2026-10-06/" target="_blank" rel="noopener">韩国：疑似有 AI Agent 被用来入侵该国银行</a></h4>
-    
-  </article>
-<article class="brief">
     <div class="meta"><b>【Hacker News】</b>05:59</div>
     
     <h4><a href="https://penguin-mail.com/" target="_blank" rel="noopener">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI</a></h4>
@@ -359,12 +466,6 @@
     
     <h4><a href="https://news.ycombinator.com/item?id=49982498" target="_blank" rel="noopener">Photopea 开发者吐槽：GitHub 一个月了都不肯下架我软件的破解版</a></h4>
     <p>网页版修图工具 Photopea 的开发者发文称，很多人让 AI 模型抓取他网站的 JS 代码、去掉广告，当作「新产品」发布到 GitHub，………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>01:01</div>
-    
-    <h4><a href="https://www.techspot.com/news/114111-utah-become-first-state-ai-examine-patients-prescribe.html" target="_blank" rel="noopener">犹他州将允许 AI 在无人工监督下问诊和开药</a></h4>
-    
   </article>
 <article class="brief">
     <div class="meta"><b>【Hacker News】</b>00:23</div>
@@ -378,10 +479,18 @@
     <h4><a href="https://mistral.ai/news/mistral-large-4/\" target="_blank" rel="noopener">Mistral Large 4：HN 上的一条神评论</a></h4>
     <p>有人吐槽基准测试已经饱和：「前沿模型的测试题，是一只穿渔网袜的犰狳在火星上乱穿马路。」作者没忍住，真让 Claude Opus 5.5 生成了一张这样的 SVG。………</p>
   </article></div>
+    <button class="next-page" data-goto="a9">下一版 · 观点 →</button>
   </section>
-<section class="section">
+<section class="section" data-page="a9">
+    <div class="folio">第 A9 版 · 观点与随笔 · 共 6 条</div>
     <header><h3>观点与随笔</h3><span class="en">Opinions</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
+    <div class="meta"><b>【Simon Willison】</b>12:47</div>
+    
+    <h4><a href="https://simonwillison.net/2026/Oct/7/jake-boggan/" target="_blank" rel="noopener">引述 Jake Boggan 谈图论悬案</a></h4>
+    <p>我年轻时痴迷图论，还为研究它搬去布达佩斯、在大师们中间学习。在那里我开始研究巴内特猜想（Barnette's Conjecture），此后 24 年里它始终断断续续占据着我的头脑，………</p>
+  </article>
+<article class="brief">
     <div class="meta"><b>【Simon Willison】</b>08:16</div>
     
     <h4><a href="https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/" target="_blank" rel="noopener">维基媒体项目发现 OpenAI「脱管」Agent 的活动痕迹</a></h4>
@@ -410,13 +519,8 @@
     
     <h4><a href="https://simonwillison.net/2026/Oct/6/hn-49983751/" target="_blank" rel="noopener">EmbeddingGemma 2：开放权重的嵌入模型才对味</a></h4>
     <p>作者很欣赏 EmbeddingGemma 2 采用 Apache 2.0 许可：对嵌入模型来说，封闭、专有、只能托管的模式并不合理，大多数应用………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Simon Willison】</b>04:18</div>
-    <img class="thumb" src="https://static.simonwillison.net/static/2026-10-06/mistral-large-4-pelican.webp" alt="" loading="lazy" onerror="this.remove()">
-    <h4><a href="https://simonwillison.net/2026/Oct/6/le-chonk/" target="_blank" rel="noopener">Mistral Large 4 发布：万亿参数，「Le chonk」回归牌桌</a></h4>
-    <p>Mistral 重新回到了牌桌。Mistral Large 4 预览版有 1 万亿总参数、490 亿激活参数，在他们自己的 3800 块 NVIDIA Grace Blackwell GPU 集群上训练。………</p>
   </article></div>
+    <button class="next-page" data-goto="a1">下一版 · 回头版 →</button>
   </section>
 
   <section class="archive">
@@ -430,5 +534,26 @@
     <span>内容来自公开 RSS 源，版权归原作者所有 · <a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>
 </main>
+<script>
+(function () {
+  const tabs = document.querySelectorAll('.tabs button');
+  const pages = document.querySelectorAll('[data-page]');
+  function activate(id, save) {
+    tabs.forEach((b) => b.classList.toggle('active', b.dataset.page === id));
+    pages.forEach((p) => p.classList.toggle('active', p.dataset.page === id));
+    if (save) {
+      history.replaceState(null, '', '#' + id);
+      window.scrollTo(0, 0);
+    }
+  }
+  tabs.forEach((b) => b.addEventListener('click', () => activate(b.dataset.page, true)));
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-goto]');
+    if (t) activate(t.dataset.goto, true);
+  });
+  const h = (location.hash || '#a1').slice(1);
+  activate([...tabs].some((b) => b.dataset.page === h) ? h : 'a1', false);
+})();
+</script>
 </body>
 </html>

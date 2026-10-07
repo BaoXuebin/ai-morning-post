@@ -336,9 +336,10 @@ const entry = { date: dateK, no: finalNo, headline: headline.title };const manif
   ? manifest.map((m) => (m.date === dateK ? entry : m))
   : [...manifest, entry].sort((a, b) => a.date.localeCompare(b.date));
 
-// ---------- 印章 logo / favicon ----------
-const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="9" fill="#a5382a"/><rect x="6.5" y="6.5" width="51" height="51" rx="6" fill="none" stroke="#f5f0e6" stroke-opacity=".55" stroke-width="1.6"/><text x="32" y="27" font-family="Georgia,'Times New Roman',serif" font-size="15" letter-spacing="2" fill="#f5f0e6" text-anchor="middle">HI</text><text x="32" y="50" font-family="Georgia,'Times New Roman',serif" font-size="24" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text></svg>`;
-writeFileSync(join(SITE, 'favicon.svg'), LOGO_SVG);
+// ---------- 报徽 logo / favicon（界格报名框式） ----------
+const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 132"><rect x="1.5" y="1.5" width="93" height="129" rx="7" fill="#a5382a" stroke="#26221b" stroke-width="3"/><rect x="10" y="10" width="76" height="100" fill="none" stroke="#f5f0e6" stroke-opacity=".8" stroke-width="1.8"/><text x="48" y="52" font-family="Georgia,'Times New Roman',serif" font-size="25" fill="#f5f0e6" text-anchor="middle">Hi</text><line x1="30" x2="66" y1="63" y2="63" stroke="#f5f0e6" stroke-opacity=".7" stroke-width="1"/><text x="48" y="95" font-family="Georgia,'Times New Roman',serif" font-size="28" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text><text x="48" y="124" font-family="Georgia,'Times New Roman',serif" font-size="8.5" letter-spacing="2.5" fill="#f5f0e6" fill-opacity=".85" text-anchor="middle">EST.2026</text></svg>`;
+const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="1.5" y="1.5" width="61" height="61" rx="8" fill="#a5382a" stroke="#26221b" stroke-width="3"/><rect x="8" y="8" width="48" height="48" fill="none" stroke="#f5f0e6" stroke-opacity=".8" stroke-width="1.5"/><text x="32" y="26" font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#f5f0e6" text-anchor="middle">Hi</text><line x1="20" x2="44" y1="32" y2="32" stroke="#f5f0e6" stroke-opacity=".7" stroke-width="1"/><text x="32" y="50" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text></svg>`;
+writeFileSync(join(SITE, 'favicon.svg'), FAVICON_SVG);
 
 // ---------- 模板 ----------
 const esc = (s) =>
@@ -369,7 +370,7 @@ const CSS = `
   a { color: inherit; }
 
   .masthead { text-align: center; }
-  .seal svg { width: 44px; height: 44px; display: block; margin: 0 auto 10px; }
+  .seal svg { width: 58px; height: auto; display: block; margin: 0 auto 10px; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
   h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
@@ -430,10 +431,57 @@ const CSS = `
   .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
   .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
 
-  @media (max-width: 640px) {
-    .sheet { padding: 30px 18px 60px; }
-    .briefs, .archive ul { columns: 1; }
+  /* 版面导航 / 版面号 / 头版导读（桌面隐藏，移动端启用） */
+  .tabs, .folio, .toc, .next-page { display: none; }
+  .page-front { display: contents; }
+
+  @media (max-width: 768px) {
+    .sheet { padding: 26px 16px 56px; }
+    .seal svg { width: 50px; }
     .headline .lede::first-letter { font-size: 2em; }
+
+    /* 报耳 tab 条 */
+    .tabs {
+      display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      position: sticky; top: 0; z-index: 6;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--rule-dark);
+      margin: 0 -16px; padding: 0 8px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button { flex: none; appearance: none; border: none; background: none; font-family: inherit; font-size: 14px; letter-spacing: .12em; color: var(--ink-soft); padding: 9px 11px; position: relative; cursor: pointer; }
+    .tabs button.active { color: var(--seal); font-weight: 600; }
+    .tabs button.active::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: -1px; height: 3px; background: var(--rule-dark); }
+
+    /* 一次只显示一个版面 */
+    .page-front, .section { display: none; }
+    .page-front.active { display: block; }
+    .section.active { display: block; margin-top: 14px; }
+    .folio { display: block; font-size: 12px; color: var(--ink-faint); letter-spacing: .18em; margin: 12px 0 2px; }
+
+    /* 题图放大为横幅 */
+    .briefs { columns: 1; margin-top: 4px; }
+    .brief .thumb { display: block; float: none; width: 100%; height: 148px; margin: 8px 0; }
+    .archive ul { columns: 1; }
+
+    /* 头版导读 */
+    .toc { display: block; margin-top: 28px; border-top: 3px solid var(--rule-dark); padding-top: 12px; }
+    .toc h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
+    .toc-row { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; appearance: none; border: none; border-bottom: 1px solid var(--rule); background: none; font-family: inherit; font-size: 14px; color: var(--ink); padding: 10px 0; cursor: pointer; }
+    .toc-folio { font-family: var(--latin); color: var(--seal); font-weight: 600; flex: none; }
+    .toc-name { font-weight: 600; flex: none; }
+    .toc-titles { flex: 1; font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-go { flex: none; font-size: 12px; color: var(--seal); }
+
+    /* 翻版按钮 */
+    .next-page { display: block; margin: 22px 0 0 auto; appearance: none; border: 1px solid var(--rule-dark); background: none; font-family: inherit; font-size: 13.5px; letter-spacing: .1em; color: var(--ink); padding: 9px 16px; cursor: pointer; }
+    .next-page:active { background: var(--ink); color: var(--paper); }
+
+    /* 统计栏两行 */
+    .stat { flex: 0 0 50%; border-left: none; border-top: 1px solid var(--rule); padding: 10px 6px 2px; }
+    .stat:nth-child(-n+2) { border-top: none; }
   }
 `;
 
@@ -454,6 +502,27 @@ function page(titleSuffix, inner) {
 <main class="sheet">
 ${inner}
 </main>
+<script>
+(function () {
+  const tabs = document.querySelectorAll('.tabs button');
+  const pages = document.querySelectorAll('[data-page]');
+  function activate(id, save) {
+    tabs.forEach((b) => b.classList.toggle('active', b.dataset.page === id));
+    pages.forEach((p) => p.classList.toggle('active', p.dataset.page === id));
+    if (save) {
+      history.replaceState(null, '', '#' + id);
+      window.scrollTo(0, 0);
+    }
+  }
+  tabs.forEach((b) => b.addEventListener('click', () => activate(b.dataset.page, true)));
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-goto]');
+    if (t) activate(t.dataset.goto, true);
+  });
+  const h = (location.hash || '#a1').slice(1);
+  activate([...tabs].some((b) => b.dataset.page === h) ? h : 'a1', false);
+})();
+</script>
 </body>
 </html>
 `;
@@ -469,6 +538,36 @@ function briefHTML(a) {
 }
 
 // ---------- 当期首页 ----------
+const SHORT = {
+  要闻: '要闻', 研究前沿: '研究', 产品与发布: '产品', 'Agent 动态': 'Agent',
+  开源与社区: '开源', 行业与资本: '资本', 社区热议: '社区', 观点与随笔: '观点',
+};
+const EN_LABEL = {
+  要闻: 'Top Stories', 研究前沿: 'Research', 产品与发布: 'Products & Launches',
+  'Agent 动态': 'Agent Watch', 开源与社区: 'Open Source', 行业与资本: 'Business & Funding',
+  社区热议: 'Community Buzz', 观点与随笔: 'Opinions',
+};
+
+const tabsHTML = `<nav class="tabs" aria-label="版面导航">
+    <button data-page="a1" class="active">头版</button>
+    ${sections.map((s, i) => `<button data-page="a${i + 2}">${SHORT[s.name] || s.name}</button>`).join('\n    ')}
+  </nav>`;
+
+const tocHTML = `<section class="toc">
+    <h3>本期版面</h3>
+    ${sections
+      .map((s, i) => {
+        const titles = s.items.slice(0, 2).map((a) => esc(a.title)).join('；');
+        return `<button class="toc-row" data-goto="a${i + 2}">
+      <span class="toc-folio">A${i + 2}</span>
+      <span class="toc-name">${s.name}</span>
+      <span class="toc-titles">${titles}</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>`;
+      })
+      .join('\n')}
+  </section>`;
+
 const indexHTML = page(
   `Hi, AI · 第 ${finalNo} 期`,
   `<header class="masthead">
@@ -482,8 +581,10 @@ const indexHTML = page(
     <span class="no">第 ${finalNo} 期</span>
     <span>晨间八时印行</span>
   </div>
+  ${tabsHTML}
   <div class="double-rule"></div>
 
+  <div class="page-front" data-page="a1">
   <section class="headline">
     <span class="label">今日头条</span>
     <h2><a href="${esc(headline.link)}" target="_blank" rel="noopener">${esc(headline.title)}</a></h2>
@@ -501,15 +602,23 @@ const indexHTML = page(
     ${stats.map((s) => `<div class="stat"><b>${s.v}</b><span>${s.label}</span></div>`).join('\n')}
   </section>
 
+  ${tocHTML}
+  </div>
+
   ${sections
-    .map(
-      (s) => `<section class="section">
-    <header><h3>${s.name}</h3><span class="en">${
-      { 要闻: 'Top Stories', 研究前沿: 'Research', 产品与发布: 'Products & Launches', 开源与社区: 'Open Source', 行业与资本: 'Business & Funding', 社区热议: 'Community Buzz', 观点与随笔: 'Opinions' }[s.name] || ''
-    }</span><div class="rule"></div></header>
+    .map((s, i) => {
+      const pid = 'a' + (i + 2);
+      const next =
+        i + 1 < sections.length
+          ? { id: 'a' + (i + 3), label: SHORT[sections[i + 1].name] || sections[i + 1].name }
+          : { id: 'a1', label: '回头版' };
+      return `<section class="section" data-page="${pid}">
+    <div class="folio">第 ${pid.toUpperCase()} 版 · ${s.name} · 共 ${s.items.length} 条</div>
+    <header><h3>${s.name}</h3><span class="en">${EN_LABEL[s.name] || ''}</span><div class="rule"></div></header>
     <div class="briefs">${s.items.map(briefHTML).join('\n')}</div>
-  </section>`
-    )
+    <button class="next-page" data-goto="${next.id}">下一版 · ${next.label} →</button>
+  </section>`;
+    })
     .join('\n')}
 
   <section class="archive">
