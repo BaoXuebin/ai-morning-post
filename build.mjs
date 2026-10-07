@@ -336,8 +336,7 @@ const entry = { date: dateK, no: finalNo, headline: headline.title };const manif
   ? manifest.map((m) => (m.date === dateK ? entry : m))
   : [...manifest, entry].sort((a, b) => a.date.localeCompare(b.date));
 
-// ---------- 报徽 logo / favicon（界格报名框式） ----------
-const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 132"><rect x="1.5" y="1.5" width="93" height="129" rx="7" fill="#a5382a" stroke="#26221b" stroke-width="3"/><rect x="10" y="10" width="76" height="100" fill="none" stroke="#f5f0e6" stroke-opacity=".8" stroke-width="1.8"/><text x="48" y="52" font-family="Georgia,'Times New Roman',serif" font-size="25" fill="#f5f0e6" text-anchor="middle">Hi</text><line x1="30" x2="66" y1="63" y2="63" stroke="#f5f0e6" stroke-opacity=".7" stroke-width="1"/><text x="48" y="95" font-family="Georgia,'Times New Roman',serif" font-size="28" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text><text x="48" y="124" font-family="Georgia,'Times New Roman',serif" font-size="8.5" letter-spacing="2.5" fill="#f5f0e6" fill-opacity=".85" text-anchor="middle">EST.2026</text></svg>`;
+// ---------- favicon（界格报名框式） ----------
 const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="1.5" y="1.5" width="61" height="61" rx="8" fill="#a5382a" stroke="#26221b" stroke-width="3"/><rect x="8" y="8" width="48" height="48" fill="none" stroke="#f5f0e6" stroke-opacity=".8" stroke-width="1.5"/><text x="32" y="26" font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#f5f0e6" text-anchor="middle">Hi</text><line x1="20" x2="44" y1="32" y2="32" stroke="#f5f0e6" stroke-opacity=".7" stroke-width="1"/><text x="32" y="50" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text></svg>`;
 writeFileSync(join(SITE, 'favicon.svg'), FAVICON_SVG);
 
@@ -370,7 +369,6 @@ const CSS = `
   a { color: inherit; }
 
   .masthead { text-align: center; }
-  .seal svg { width: 58px; height: auto; display: block; margin: 0 auto 10px; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
   h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
@@ -437,7 +435,6 @@ const CSS = `
 
   @media (max-width: 768px) {
     .sheet { padding: 26px 16px 56px; }
-    .seal svg { width: 50px; }
     .headline .lede::first-letter { font-size: 2em; }
 
     /* 报耳 tab 条 */
@@ -571,7 +568,6 @@ const tocHTML = `<section class="toc">
 const indexHTML = page(
   `Hi, AI · 第 ${finalNo} 期`,
   `<header class="masthead">
-    <div class="seal">${LOGO_SVG}</div>
     <p class="kicker">The AI Morning Post</p>
     <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
     <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
@@ -649,7 +645,6 @@ writeFileSync(join(SITE, 'issues', `${dateK}.html`), issueHTML);
 const archiveHTML = page(
   'Hi, AI · 全部往期',
   `<header class="masthead">
-    <div class="seal">${LOGO_SVG}</div>
     <p class="kicker">The AI Morning Post</p>
     <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
     <p class="motto">一份 AI 标记的晨报 · 全部往期，按日期排列。</p>
