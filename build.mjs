@@ -446,7 +446,7 @@ const indexHTML = page(
 
   <footer class="colophon">
     <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
-    <span>内容来自公开 RSS 源，版权归原作者所有</span>
+    <span>内容来自公开 RSS 源，版权归原作者所有 · <a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>`
 );
 
@@ -478,6 +478,7 @@ const archiveHTML = page(
   </section>
   <footer class="colophon">
     <span><span class="seal-mark">智能晨报</span> · 一份自动编排的 AI 早报</span>
+    <span><a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
   </footer>`
 );
 
