@@ -376,10 +376,10 @@ const CSS = `
   .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
   .dateline::before, .dateline::after { content: ""; flex: 1; max-width: 170px; height: 1px; background: var(--rule); }
   .dateline .no { color: var(--seal); font-family: var(--latin); letter-spacing: .08em; }
-  .double-rule { margin-top: 20px; border-top: 3px solid var(--rule-dark); border-bottom: 1px solid var(--rule-dark); height: 7px; }
+  .double-rule { margin-top: 20px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); height: 5px; }
 
   /* 头条 */
-  .headline { padding: 30px 0 26px; border-bottom: 3px solid var(--rule-dark); }
+  .headline { padding: 30px 0 26px; border-bottom: 1px solid var(--rule); }
   .headline .label { display: inline-block; background: var(--seal); color: var(--paper); font-size: 13px; letter-spacing: .35em; padding: 2px 12px 2px 15px; margin-bottom: 14px; }
   .headline h2 { font-size: clamp(30px, 5.4vw, 44px); font-weight: 900; line-height: 1.4; }
   .headline h2 a { text-decoration: none; }
@@ -397,7 +397,7 @@ const CSS = `
   .section > header { display: flex; align-items: baseline; gap: 16px; }
   .section > header h3 { font-size: 21px; font-weight: 600; letter-spacing: .3em; }
   .section > header .en { font-family: var(--latin); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
-  .section > header .rule { flex: 1; height: 3px; background: var(--rule-dark); }
+  .section > header .rule { flex: 1; height: 1px; background: var(--rule); }
   .briefs { margin-top: 14px; columns: 2; column-gap: 32px; column-rule: 1px solid var(--rule); }
   .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); overflow: hidden; }
   .brief .thumb { float: right; width: 96px; height: 72px; object-fit: cover; margin: 0 0 8px 12px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
@@ -410,7 +410,7 @@ const CSS = `
   .brief .meta a { color: inherit; }
 
   /* 往期 */
-  .archive { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; }
+  .archive { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; }
   .archive h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
   .archive ul { list-style: none; margin-top: 10px; columns: 2; column-gap: 32px; }
   .archive li { font-size: 13.5px; padding: 3px 0; break-inside: avoid; }
@@ -419,7 +419,7 @@ const CSS = `
   .archive .all { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--seal); text-decoration: none; letter-spacing: .1em; }
   .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-  .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .colophon { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
 
   /* 本期数字 */
@@ -464,7 +464,7 @@ const CSS = `
     .archive ul { columns: 1; }
 
     /* 头版导读 */
-    .toc { display: block; margin-top: 28px; border-top: 3px solid var(--rule-dark); padding-top: 12px; }
+    .toc { display: block; margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 12px; }
     .toc h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
     .toc-row { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; appearance: none; border: none; border-bottom: 1px solid var(--rule); background: none; font-family: inherit; font-size: 14px; color: var(--ink); padding: 10px 0; cursor: pointer; }
     .toc-folio { font-family: var(--latin); color: var(--seal); font-weight: 600; flex: none; }

@@ -31,10 +31,10 @@
   .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
   .dateline::before, .dateline::after { content: ""; flex: 1; max-width: 170px; height: 1px; background: var(--rule); }
   .dateline .no { color: var(--seal); font-family: var(--latin); letter-spacing: .08em; }
-  .double-rule { margin-top: 20px; border-top: 3px solid var(--rule-dark); border-bottom: 1px solid var(--rule-dark); height: 7px; }
+  .double-rule { margin-top: 20px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); height: 5px; }
 
   /* 头条 */
-  .headline { padding: 30px 0 26px; border-bottom: 3px solid var(--rule-dark); }
+  .headline { padding: 30px 0 26px; border-bottom: 1px solid var(--rule); }
   .headline .label { display: inline-block; background: var(--seal); color: var(--paper); font-size: 13px; letter-spacing: .35em; padding: 2px 12px 2px 15px; margin-bottom: 14px; }
   .headline h2 { font-size: clamp(30px, 5.4vw, 44px); font-weight: 900; line-height: 1.4; }
   .headline h2 a { text-decoration: none; }
@@ -52,7 +52,7 @@
   .section > header { display: flex; align-items: baseline; gap: 16px; }
   .section > header h3 { font-size: 21px; font-weight: 600; letter-spacing: .3em; }
   .section > header .en { font-family: var(--latin); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
-  .section > header .rule { flex: 1; height: 3px; background: var(--rule-dark); }
+  .section > header .rule { flex: 1; height: 1px; background: var(--rule); }
   .briefs { margin-top: 14px; columns: 2; column-gap: 32px; column-rule: 1px solid var(--rule); }
   .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); overflow: hidden; }
   .brief .thumb { float: right; width: 96px; height: 72px; object-fit: cover; margin: 0 0 8px 12px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
@@ -65,7 +65,7 @@
   .brief .meta a { color: inherit; }
 
   /* 往期 */
-  .archive { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; }
+  .archive { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; }
   .archive h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
   .archive ul { list-style: none; margin-top: 10px; columns: 2; column-gap: 32px; }
   .archive li { font-size: 13.5px; padding: 3px 0; break-inside: avoid; }
@@ -74,7 +74,7 @@
   .archive .all { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--seal); text-decoration: none; letter-spacing: .1em; }
   .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-  .colophon { margin-top: 46px; border-top: 3px solid var(--rule-dark); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .colophon { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
 
   /* 本期数字 */
@@ -119,7 +119,7 @@
     .archive ul { columns: 1; }
 
     /* 头版导读 */
-    .toc { display: block; margin-top: 28px; border-top: 3px solid var(--rule-dark); padding-top: 12px; }
+    .toc { display: block; margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 12px; }
     .toc h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
     .toc-row { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; appearance: none; border: none; border-bottom: 1px solid var(--rule); background: none; font-family: inherit; font-size: 14px; color: var(--ink); padding: 10px 0; cursor: pointer; }
     .toc-folio { font-family: var(--latin); color: var(--seal); font-weight: 600; flex: none; }
@@ -157,8 +157,7 @@
     <button data-page="a5">Agent</button>
     <button data-page="a6">开源</button>
     <button data-page="a7">资本</button>
-    <button data-page="a8">社区</button>
-    <button data-page="a9">观点</button>
+    <button data-page="a8">观点</button>
   </nav>
   <div class="double-rule"></div>
 
@@ -173,11 +172,11 @@
   </section>
 
   <section class="stats">
-    <div class="stat"><b>42</b><span>条资讯</span></div>
+    <div class="stat"><b>37</b><span>条资讯</span></div>
 <div class="stat"><b>6</b><span>篇论文</span></div>
 <div class="stat"><b>8</b><span>个开源新仓库</span></div>
 <div class="stat"><b>★1847</b><span>最热仓库</span></div>
-<div class="stat"><b>11</b><span>家来源</span></div>
+<div class="stat"><b>10</b><span>家来源</span></div>
   </section>
 
   <section class="toc">
@@ -203,7 +202,7 @@
 <button class="toc-row" data-goto="a5">
       <span class="toc-folio">A5</span>
       <span class="toc-name">Agent 动态</span>
-      <span class="toc-titles">OpenAI 将默认给 ChatGPT 输出加水印——但只在欧盟；Claude Code 的建议消息功能：真正的顾客或许是模型本身</span>
+      <span class="toc-titles">OpenAI 将默认给 ChatGPT 输出加水印——但只在欧盟；Jump Trading 用 ChatGPT 扩大量化研究的产能</span>
       <span class="toc-go">阅读本版 →</span>
     </button>
 <button class="toc-row" data-goto="a6">
@@ -220,12 +219,6 @@
     </button>
 <button class="toc-row" data-goto="a8">
       <span class="toc-folio">A8</span>
-      <span class="toc-name">社区热议</span>
-      <span class="toc-titles">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI；Photopea 开发者吐槽：GitHub 一个月了都不肯下架我软件的破解版</span>
-      <span class="toc-go">阅读本版 →</span>
-    </button>
-<button class="toc-row" data-goto="a9">
-      <span class="toc-folio">A9</span>
       <span class="toc-name">观点与随笔</span>
       <span class="toc-titles">引述 Jake Boggan 谈图论悬案；维基媒体项目发现 OpenAI「脱管」Agent 的活动痕迹</span>
       <span class="toc-go">阅读本版 →</span>
@@ -357,19 +350,13 @@
     <button class="next-page" data-goto="a5">下一版 · Agent →</button>
   </section>
 <section class="section" data-page="a5">
-    <div class="folio">第 A5 版 · Agent 动态 · 共 4 条</div>
+    <div class="folio">第 A5 版 · Agent 动态 · 共 3 条</div>
     <header><h3>Agent 动态</h3><span class="en">Agent Watch</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【ArsTechnica AI】</b>04:50</div>
     <img class="thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/09/chatgpt-icon-1152x648-1789154124.jpg" alt="" loading="lazy" onerror="this.remove()">
     <h4><a href="https://arstechnica.com/ai/2026/10/openai-will-watermark-chatgpt-outputs-by-default-but-only-in-the-eu/" target="_blank" rel="noopener">OpenAI 将默认给 ChatGPT 输出加水印——但只在欧盟</a></h4>
     <p>OpenAI 宣布将在欧盟自动为 ChatGPT 生成的文本加水印。其他地区也会提供这一功能，但默认关闭。欧洲此举是………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>02:00</div>
-    
-    <h4><a href="https://www.zohaib.cc/blog/smartest-claude-code-feature" target="_blank" rel="noopener">Claude Code 的建议消息功能：真正的顾客或许是模型本身</a></h4>
-    
   </article>
 <article class="brief">
     <div class="meta"><b>【OpenAI News】</b>20:00</div>
@@ -447,39 +434,10 @@
     <h4><a href="https://techcrunch.com/2026/10/06/anthropic-gives-startups-a-free-year-of-enterprise-service-and-1000-in-token-credits/" target="_blank" rel="noopener">Anthropic 送初创公司一年免费 Claude Team 外加 1000 美元额度</a></h4>
     <p>「我们做这个计划，是因为相信 AI 的好处会通过在模型之上构建产品的公司触达大多数人，而不是只靠模型本身。」……</p>
   </article></div>
-    <button class="next-page" data-goto="a8">下一版 · 社区 →</button>
+    <button class="next-page" data-goto="a8">下一版 · 观点 →</button>
   </section>
 <section class="section" data-page="a8">
-    <div class="folio">第 A8 版 · 社区热议 · 共 4 条</div>
-    <header><h3>社区热议</h3><span class="en">Community Buzz</span><div class="rule"></div></header>
-    <div class="briefs"><article class="brief">
-    <div class="meta"><b>【Hacker News】</b>05:59</div>
-    
-    <h4><a href="https://penguin-mail.com/" target="_blank" rel="noopener">Penguin Mail：Linux 上的开源 Rust 邮件客户端，带 AI</a></h4>
-    
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>02:54</div>
-    
-    <h4><a href="https://news.ycombinator.com/item?id=49982498" target="_blank" rel="noopener">Photopea 开发者吐槽：GitHub 一个月了都不肯下架我软件的破解版</a></h4>
-    <p>网页版修图工具 Photopea 的开发者发文称，很多人让 AI 模型抓取他网站的 JS 代码、去掉广告，当作「新产品」发布到 GitHub，………</p>
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>00:23</div>
-    
-    <h4><a href="https://github.com/FeSens/openTPU" target="_blank" rel="noopener">OpenTPU：一个由 AI 自己开发的开源 AI 加速器</a></h4>
-    
-  </article>
-<article class="brief">
-    <div class="meta"><b>【Hacker News】</b>21:15</div>
-    
-    <h4><a href="https://mistral.ai/news/mistral-large-4/\" target="_blank" rel="noopener">Mistral Large 4：HN 上的一条神评论</a></h4>
-    <p>有人吐槽基准测试已经饱和：「前沿模型的测试题，是一只穿渔网袜的犰狳在火星上乱穿马路。」作者没忍住，真让 Claude Opus 5.5 生成了一张这样的 SVG。………</p>
-  </article></div>
-    <button class="next-page" data-goto="a9">下一版 · 观点 →</button>
-  </section>
-<section class="section" data-page="a9">
-    <div class="folio">第 A9 版 · 观点与随笔 · 共 6 条</div>
+    <div class="folio">第 A8 版 · 观点与随笔 · 共 6 条</div>
     <header><h3>观点与随笔</h3><span class="en">Opinions</span><div class="rule"></div></header>
     <div class="briefs"><article class="brief">
     <div class="meta"><b>【Simon Willison】</b>12:47</div>
