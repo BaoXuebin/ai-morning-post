@@ -490,6 +490,13 @@ function page(titleSuffix, inner) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${titleSuffix}</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P2N5MY7YFJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P2N5MY7YFJ');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
