@@ -12,11 +12,15 @@ const MAX_PER_FEED = 40;
 const EXCERPT_LEN = 260;
 const WINDOW_HOURS = 36;   // 当期收录最近多久的内容
 const MIN_ITEMS = 8;       // 当期最少条数，不足则回退到最近文章
-const SECTIONS = ['要闻', '研究前沿', '产品与发布', '开源与社区', '行业与资本', '社区热议', '观点与随笔'];
+const SECTIONS = ['要闻', '研究前沿', '产品与发布', 'Agent 动态', '开源与社区', '行业与资本', '社区热议', '观点与随笔'];
 
 // 资本类关键词条目自动归入「行业与资本」
 const FUNDING_RE =
   /(raise[sd]?\s|funding|series [a-z]\b|\bipo\b|acquir|\bvaluation\b|merger|\$\d[\d.,]*\s*(billion|million|bn|mm?)?\b|\d(\.\d+)?\s*(billion|million)\b|融资|收购|上市|估值|亿美元|万美元|千万美元)/i;
+
+// 主流 AI Agent 产品名 →「Agent 动态」
+const AGENT_RE =
+  /(claude\s?code|codex|chatgpt|zcode|trae|qoder|workbuddy|copilot|cursor|windsurf|devin|coding agent|agent mode|agentcli|编程智能体|智能编程|代码智能体)/i;
 
 const tKey = (s) => createHash('md5').update(s).digest('hex').slice(0, 12);
 
@@ -81,6 +85,28 @@ const pickContent = (item) =>
   text(item.summary) ||
   '';
 
+// 从 feed 条目里抽题图：media 标签 → enclosure → 正文首图
+const pickImage = (item, rawHtml, feedUrl) => {
+  const candidates = [];
+  for (const m of [].concat(item['media:thumbnail'] || [], item['media:content'] || [])) {
+    if (m?.['@_url']) candidates.push(m['@_url']);
+  }
+  for (const e of [].concat(item.enclosure || [])) {
+    if ((e?.['@_type'] || '').startsWith('image') && e['@_url']) candidates.push(e['@_url']);
+  }
+  const m = rawHtml.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (m && !/width=["']1["']/i.test(m[0])) candidates.push(m[1]);
+  for (let c of candidates) {
+    try {
+      c = new URL(c, feedUrl).href;
+      if (/^https?:/.test(c)) return c;
+    } catch {
+      /* 忽略非法地址 */
+    }
+  }
+  return null;
+};
+
 function parseFeed(xmlStr, fallbackName) {
   const doc = parser.parse(xmlStr);
   let items = [];
@@ -129,6 +155,7 @@ async function fetchGitHub(feed) {
       lang: feed.lang,
       date: r.created_at,
       excerpt: `${r.description || '（无描述）'}（★ ${r.stargazers_count}）`,
+      image: r.owner?.avatar_url || null,
       force: feed.force,
     }));
     return { ok: true, articles };
@@ -167,7 +194,8 @@ async function fetchFeed(feed) {
         const link = pickLink(item);
         const t = text(item.title).trim();
         if (!link || !t) return null;
-        let excerpt = stripHtml(pickContent(item)).slice(0, EXCERPT_LEN);
+        const rawContent = pickContent(item);
+        let excerpt = stripHtml(rawContent).slice(0, EXCERPT_LEN);
         if (/^article url:/i.test(excerpt)) excerpt = '';
         return {
           title: t.replace(/\s+/g, ' '),
@@ -178,6 +206,7 @@ async function fetchFeed(feed) {
           force: feed.force,
           date: pickDate(item),
           excerpt,
+          image: pickImage(item, rawContent, feed.url),
         };
       })
       .filter(Boolean)
@@ -218,9 +247,11 @@ deduped.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
 // ---------- 选当期文章 ----------
 const now = Date.now();
-// 资本类关键词条目跨源重新归类（仓库条目除外）
+// 资本类关键词 →「行业与资本」；主流 Agent 产品名 →「Agent 动态」（仓库条目除外）
 for (const a of deduped) {
-  if (!a.force && FUNDING_RE.test(a.title)) a.category = '行业与资本';
+  if (a.force) continue;
+  if (FUNDING_RE.test(a.title)) a.category = '行业与资本';
+  else if (AGENT_RE.test(a.title)) a.category = 'Agent 动态';
 }
 const inWindow = deduped.filter(
   (a) =>
@@ -305,6 +336,10 @@ const entry = { date: dateK, no: finalNo, headline: headline.title };const manif
   ? manifest.map((m) => (m.date === dateK ? entry : m))
   : [...manifest, entry].sort((a, b) => a.date.localeCompare(b.date));
 
+// ---------- 印章 logo / favicon ----------
+const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="9" fill="#a5382a"/><rect x="6.5" y="6.5" width="51" height="51" rx="6" fill="none" stroke="#f5f0e6" stroke-opacity=".55" stroke-width="1.6"/><text x="32" y="27" font-family="Georgia,'Times New Roman',serif" font-size="15" letter-spacing="2" fill="#f5f0e6" text-anchor="middle">HI</text><text x="32" y="50" font-family="Georgia,'Times New Roman',serif" font-size="24" font-weight="bold" fill="#f5f0e6" text-anchor="middle">AI</text></svg>`;
+writeFileSync(join(SITE, 'favicon.svg'), LOGO_SVG);
+
 // ---------- 模板 ----------
 const esc = (s) =>
   String(s).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
@@ -334,6 +369,7 @@ const CSS = `
   a { color: inherit; }
 
   .masthead { text-align: center; }
+  .seal svg { width: 44px; height: 44px; display: block; margin: 0 auto 10px; }
   .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
   h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
   h1.mast .dot { color: var(--seal); }
@@ -355,6 +391,7 @@ const CSS = `
   .headline .lede::first-letter { font-size: 2.4em; font-weight: 900; float: left; line-height: 1.1; padding: 2px 8px 0 0; color: var(--ink); }
   .headline .goto { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--seal); letter-spacing: .12em; text-decoration: none; }
   .headline .goto:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .headline .hero { display: block; width: 100%; max-height: 320px; object-fit: cover; margin: 16px 0 8px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
 
   /* 版块 */
   .section { margin-top: 34px; }
@@ -363,7 +400,8 @@ const CSS = `
   .section > header .en { font-family: var(--latin); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
   .section > header .rule { flex: 1; height: 3px; background: var(--rule-dark); }
   .briefs { margin-top: 14px; columns: 2; column-gap: 32px; column-rule: 1px solid var(--rule); }
-  .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); overflow: hidden; }
+  .brief .thumb { float: right; width: 96px; height: 72px; object-fit: cover; margin: 0 0 8px 12px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
   .brief h4 { font-size: 17px; font-weight: 600; line-height: 1.55; }
   .brief h4 a { text-decoration: none; }
   .brief h4 a:hover { color: var(--seal); }
@@ -406,6 +444,7 @@ function page(titleSuffix, inner) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${titleSuffix}</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
@@ -423,6 +462,7 @@ ${inner}
 function briefHTML(a) {
   return `<article class="brief">
     <div class="meta"><b>【${esc(a.source)}】</b>${a.date ? hm(a.date) : ''}</div>
+    ${a.image ? `<img class="thumb" src="${esc(a.image)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
     <h4><a href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.title)}</a></h4>
     ${a.excerpt ? `<p>${esc(a.excerpt)}……</p>` : ''}
   </article>`;
@@ -432,6 +472,7 @@ function briefHTML(a) {
 const indexHTML = page(
   `Hi, AI · 第 ${finalNo} 期`,
   `<header class="masthead">
+    <div class="seal">${LOGO_SVG}</div>
     <p class="kicker">The AI Morning Post</p>
     <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
     <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
@@ -447,6 +488,11 @@ const indexHTML = page(
     <span class="label">今日头条</span>
     <h2><a href="${esc(headline.link)}" target="_blank" rel="noopener">${esc(headline.title)}</a></h2>
     <p class="meta"><b>${esc(headline.source)}</b>${headline.date ? ' · ' + hm(headline.date) : ''}</p>
+    ${
+      headline.image
+        ? `<a href="${esc(headline.link)}" target="_blank" rel="noopener"><img class="hero" src="${esc(headline.image)}" alt="" loading="lazy" onerror="this.parentNode.remove()"></a>`
+        : ''
+    }
     ${headline.excerpt ? `<p class="lede">${esc(headline.excerpt)}……</p>` : ''}
     <a class="goto" href="${esc(headline.link)}" target="_blank" rel="noopener">阅读全文 ↗</a>
   </section>
@@ -486,13 +532,15 @@ const indexHTML = page(
 const issueHTML = indexHTML
   .replace(`Hi, AI · 第 ${finalNo} 期`, `Hi, AI · 第 ${finalNo} 期 · ${dateK}`)
   .replaceAll('href="issues/', 'href="../issues/')
-  .replaceAll('href="archive.html"', 'href="../archive.html"');
+  .replaceAll('href="archive.html"', 'href="../archive.html"')
+  .replaceAll('href="favicon.svg"', 'href="../favicon.svg"');
 writeFileSync(join(SITE, 'issues', `${dateK}.html`), issueHTML);
 
 // 总目录页
 const archiveHTML = page(
   'Hi, AI · 全部往期',
   `<header class="masthead">
+    <div class="seal">${LOGO_SVG}</div>
     <p class="kicker">The AI Morning Post</p>
     <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
     <p class="motto">一份 AI 标记的晨报 · 全部往期，按日期排列。</p>

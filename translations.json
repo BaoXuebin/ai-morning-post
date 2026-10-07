@@ -178,5 +178,25 @@
   "1761916d4956": {
     "title": "OpenTPU：一个由 AI 自己开发的开源 AI 加速器",
     "excerpt": ""
+  },
+  "d9a2e683ed99": {
+    "title": "一行命令移除 macOS 27 的 Apple Intelligence",
+    "excerpt": "一个新工具让 Mac 用户重新可以一键关掉 Apple Intelligence，并释放多达 12GB 存储。与旧版 macOS 不同，macOS 27 Golden Gate 没有提供关闭它的开关，…"
+  },
+  "1f13e8498bb1": {
+    "title": "Jump Trading 用 ChatGPT 扩大量化研究的产能",
+    "excerpt": "Jump Trading 借助 OpenAI 扩展量化研究：更长时间运行的 AI 工作流把多个数据源与人工复核组合在一起。"
+  },
+  "0a5e44377f38": {
+    "title": "OpenAI 将在欧盟为 ChatGPT 文本加水印",
+    "excerpt": "为遵守《人工智能法案》，OpenAI 将在欧盟为 ChatGPT 和 Codex 的输出文本加水印；公司承认编辑文本会让隐形水印更难检出。"
+  },
+  "a770ed796e80": {
+    "title": "OpenAI 在 ChatGPT 和 Codex 中上线文本水印",
+    "excerpt": "一种隐形、机器可读的文本水印正在 ChatGPT 和 Codex 上线，首批仅面向欧盟用户。OpenAI 称其 textGrain 水印「持平或超过」谷歌 DeepMind 的 SynthID 等方案，…"
+  },
+  "24404f483d1c": {
+    "title": "记者追问 ChatGPT 用户自杀事件，OpenAI 公关示意「翻篇」",
+    "excerpt": "《名利场》编辑把 ChatGPT 用户自杀的话题抛给 Sam Altman 时，OpenAI 公关试图转移话题，还被提醒「谨慎行事」。…"
   }
 }
