@@ -260,10 +260,11 @@ const inWindow = deduped.filter(
 );
 const pool = inWindow.length >= MIN_ITEMS ? inWindow : deduped;
 
-// 头条：按版面权重 + 新近度挑选（仓库条目不作头条）
+// 头条：按版面权重 + 新近度挑选（仓库条目、中文综合源不作候选）
 const weight = Object.fromEntries(SECTIONS.map((s, i) => [s, SECTIONS.length - i]));
+const HEADLINE_EXCLUDE = new Set(['雷峰网', '量子位', '爱范儿', 'Solidot', '少数派', 'InfoQ 中文']);
 const headline = [...pool]
-  .filter((a) => !a.force)
+  .filter((a) => !a.force && !HEADLINE_EXCLUDE.has(a.source))
   .sort(
     (a, b) =>
       (weight[b.category] || 0) * 100 + (Date.parse(b.date) || 0) / 1e12 -

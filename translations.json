@@ -202,5 +202,117 @@
   "041684f54783": {
     "title": "引述 Jake Boggan 谈图论悬案",
     "excerpt": "我年轻时痴迷图论，还为研究它搬去布达佩斯、在大师们中间学习。在那里我开始研究巴内特猜想（Barnette's Conjecture），此后 24 年里它始终断断续续占据着我的头脑，…"
+  },
+  "5f5164403722": {
+    "title": "微软发布会：为 AI 重塑的硬件与 Windows",
+    "excerpt": "时隔两年重回线下发布会，微软发布新一代 Surface 笔记本、预告 Windows 11 的一系列改动，并描绘本地 AI 与 Agent 工作流将如何重塑个人计算。"
+  },
+  "296b9da2b815": {
+    "title": "「软件已死」：开发者用 AI 开源复刻瞄准 Adobe",
+    "excerpt": "一直有人靠免费或开源替代品绕开 Adobe Creative Suite 的高价与难用。现在一位开发者开始用 AI 逆向工程逐条复刻，…"
+  },
+  "5ba66cd178d8": {
+    "title": "骗子用一万个机器人刷 AI 歌曲偷流媒体分成，被判入狱",
+    "excerpt": "北卡罗来纳 54 岁的 Michael Smith 认罪获刑 18 个月：他用 AI 批量生成歌曲，操控上万机器人账号播放，从音乐流媒体平台偷走数百万美元，…"
+  },
+  "9047f6dafb9f": {
+    "title": "Mistral 放话：「Le Chonk」能挑战最强 AI 模型",
+    "excerpt": "在顶级 AI 使用权之争愈演愈烈之际，法国公司 Mistral 发布可免费使用的新模型，宣称足以比肩中美顶尖水平。这个 1 万亿参数的新模型就是 Mistral Large，…"
+  },
+  "21588f763f08": {
+    "title": "谷歌升级 SynthID 检测器，现全球可用",
+    "excerpt": "Gemini 生成的每段内容都带隐形 SynthID 标签，伪造成真人内容很难蒙混过关。SynthID 已获多家大模型厂商背书，但过去想亲手验证隐形水印还得，…"
+  },
+  "98ae756ab828": {
+    "title": "微软发布搭载英伟达芯片的 AI PC 与新 Windows 11",
+    "excerpt": "微软公布 Surface Laptop Ultra 的规格与售价：搭载英伟达芯片、专为运行 AI 模型和 Agent 设计。"
+  },
+  "788646bbbc29": {
+    "title": "微软 Surface Laptop Ultra 发布会一文看全",
+    "excerpt": "微软在旧金山的 Windows/Surface 大会刚落下帷幕，最大看点自然是 Surface Laptop Ultra：搭载英伟达 RTX Spark Arm 芯片的新本，…"
+  },
+  "8eebaa6b5dd6": {
+    "title": "Meta 的 Agent 应用 Muse 登陆 iPad，距移动端首秀仅一个月",
+    "excerpt": "上线手机版仅仅一个月，Meta 的 AI Agent Muse 又登上 iPad——它正快速铺开助手的能力边界与集成范围。"
+  },
+  "22dd6d976b45": {
+    "title": "Meta 用新 AI 工具打击「表面正经、暗链儿童性虐内容」的广告",
+    "excerpt": "Meta 发现平台上的广告看似正常，点击后却把用户引向外部有害内容，于是推出新 AI 工具针对性识别。"
+  },
+  "8579b2aec5d8": {
+    "title": "Meta 的 Muse 推出 iPad 版",
+    "excerpt": "发布近一个月、曾霸榜 App Store 免费榜后，Meta 的 Muse iOS 应用新增 iPad 原生支持。这款对标 OpenClaw 的 Agent 工具还计划推出 Mac 版，…"
+  },
+  "b325be14c17d": {
+    "title": "iPod 之父反思：第一代 AI 硬件为什么失败",
+    "excerpt": "iPod 之父 Tony Fadell 说，第一代 AI 硬件没能解决真实问题；下一波想赢，必须先赢得消费者的信任。"
+  },
+  "7f2bb41b9c73": {
+    "title": "ChatGPT 的「智能界面」更新：回答里塞满图片、图表和按钮",
+    "excerpt": "OpenAI 推出 Intelligent UI 功能：ChatGPT 能把文字回答配上交互式图表一起呈现。该功能随 GPT-6 向所有用户开放，…"
+  },
+  "a6583c6c26a1": {
+    "title": "测试发现：ChatGPT 青少年模式在心理危机时仍在继续搭话",
+    "excerpt": "青少年保护机制本应保护脆弱用户，但新测试发现聊天机器人在危机时刻仍在鼓励用户继续互动，甚至可能助长不健康的 AI 关系。"
+  },
+  "7b9bf5f507b6": {
+    "title": "微软给 Copilot 放权：管你的 Windows，也管你的文件",
+    "excerpt": "在今天的发布会里，微软展示了 Copilot 升级：能访问电脑本地文件、跨整个操作系统执行操作。这属于微软称为「混合智能」的路线，…"
+  },
+  "a5bcf38a5806": {
+    "title": "ChatGPT 大改版：新界面带来交互式视觉内容",
+    "excerpt": "OpenAI 正在推出全新用户界面，为 ChatGPT 的回答加入交互式视觉内容。"
+  },
+  "aaea6fd72de2": {
+    "title": "ChatGPT 要给青少年做大学申请规划了",
+    "excerpt": "OpenAI 为 8 月推出的 ChatGPT 青少年模式带来新工具：College Planner 帮用户走完整套大学申请流程。…"
+  },
+  "96d772f94c8e": {
+    "title": "Common Sense Media：ChatGPT 青少年模式是「不可接受的风险」",
+    "excerpt": "专注青少年安全的非营利机构 Common Sense Media 评价：ChatGPT 青少年模式构成「不可接受的风险」。该模式 8 月上线，…"
+  },
+  "1044ac79b39c": {
+    "title": "Nous Research 确认 15 亿美元估值，推出面向企业的 AI Agent",
+    "excerpt": "Hermes Agent 的开发方完成 9000 万美元 B 轮融资。"
+  },
+  "40b7af8f0491": {
+    "title": "Surface RTX Spark Dev Box 开订：5999 美元",
+    "excerpt": "搭载英伟达芯片的 Surface RTX Spark Dev Box 开启预订，预计 11 月发货，约 6000 美元。比英伟达去年发布的 DGX Spark 迷你主机贵，但 PC 价格近来也在因缺货上涨，…"
+  },
+  "f151b13b496e": {
+    "title": "Healthleap 融资 3800 万美元：AI 给住院病人提前拉响警报",
+    "excerpt": "本轮包括由红杉资本和 First Round 联合领投的 800 万美元种子轮，以及 Hummingbird 领投的 3000 万美元 A 轮。"
+  },
+  "ed6c735e4497": {
+    "title": "消息称 Meta 与微软正在限制员工使用 Claude",
+    "excerpt": ""
+  },
+  "9def57344119": {
+    "title": "Claude Haiku 5.5",
+    "excerpt": ""
+  },
+  "8ea67ad7cd62": {
+    "title": "GPT-6 与 Intelligent UI 向所有人开放",
+    "excerpt": ""
+  },
+  "50b63dbe7427": {
+    "title": "Docker Agent",
+    "excerpt": ""
+  },
+  "fe15af9ea393": {
+    "title": "Show HN：Agent.reviews——AI Agent 互相点评工具的社区",
+    "excerpt": "我是 Armature（YC P26）的联合创始人 Louis，我们帮团队让产品对编程 Agent 更可被发现、更好用。已观察 5 万+ 次 Agent 会话后发现，不同 Agent 会反复撞上同一批产品限制，…"
+  },
+  "a2a808f867cc": {
+    "title": "SynthID 检测器",
+    "excerpt": "https://blog.google/innovation-and-ai/models-and-research/go... 评论区：https://news.ycombinator.com/item?id=49993188（88 分，79 条评论）"
+  },
+  "f83e89f17626": {
+    "title": "引述本·阿弗莱克谈 AI 与电影",
+    "excerpt": "我从小就喜欢摆弄电脑。电影从胶片转向数字之后，我对这方面更着迷了。视觉特效的流程很多年前就离不开机器学习，所以我可以写，…"
+  },
+  "03adf23e75d9": {
+    "title": "软件博客的反模式",
+    "excerpt": "Michael Lynch 的几条写作忠告：别写「闲散的引言」、别高估读者对你话题的了解、别默认他们读过你的旧文、也别过于端着。他还警告，…"
   }
 }
