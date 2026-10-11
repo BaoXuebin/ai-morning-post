@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi, AI · 第 5 期 · 2026-10-11</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P2N5MY7YFJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P2N5MY7YFJ');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=EB+Garamond&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e6; --paper-deep: #ede6d6; --ink: #26221b; --ink-soft: #5c5548;
+    --ink-faint: #9a917f; --seal: #a5382a; --rule: #c9bfa9; --rule-dark: #26221b;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    --latin: "EB Garamond", Georgia, serif;
+    --mast: "Ma Shan Zheng", "Noto Serif SC", serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.75; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .sheet { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 44px 30px 80px; }
+  a { color: inherit; }
+
+  .masthead { text-align: center; }
+  .kicker { font-family: var(--latin); font-size: 12px; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
+  h1.mast { font-family: var(--latin); font-weight: 600; font-size: clamp(56px, 10vw, 88px); letter-spacing: .02em; line-height: 1.1; margin: 4px 0 0; }
+  h1.mast .dot { color: var(--seal); }
+  .motto { margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); letter-spacing: .1em; }
+  .dateline { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
+  .dateline::before, .dateline::after { content: ""; flex: 1; max-width: 170px; height: 1px; background: var(--rule); }
+  .dateline .no { color: var(--seal); font-family: var(--latin); letter-spacing: .08em; }
+  .double-rule { margin-top: 20px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); height: 5px; }
+
+  /* 头条 */
+  .headline { padding: 30px 0 26px; border-bottom: 1px solid var(--rule); }
+  .headline .label { display: inline-block; background: var(--seal); color: var(--paper); font-size: 13px; letter-spacing: .35em; padding: 2px 12px 2px 15px; margin-bottom: 14px; }
+  .headline h2 { font-size: clamp(30px, 5.4vw, 44px); font-weight: 900; line-height: 1.4; }
+  .headline h2 a { text-decoration: none; }
+  .headline h2 a:hover { color: var(--seal); }
+  .headline .meta { margin: 12px 0 10px; font-size: 13px; color: var(--ink-faint); }
+  .headline .meta b { color: var(--seal); font-weight: 600; }
+  .headline .lede { font-size: 16.5px; text-align: justify; color: var(--ink-soft); }
+  .headline .lede::first-letter { font-size: 2.4em; font-weight: 900; float: left; line-height: 1.1; padding: 2px 8px 0 0; color: var(--ink); }
+  .headline .goto { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--seal); letter-spacing: .12em; text-decoration: none; }
+  .headline .goto:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .headline .hero { display: block; width: 100%; max-height: 320px; object-fit: cover; margin: 16px 0 8px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
+
+  /* 版块 */
+  .section { margin-top: 34px; }
+  .section > header { display: flex; align-items: baseline; gap: 16px; }
+  .section > header h3 { font-size: 21px; font-weight: 600; letter-spacing: .3em; }
+  .section > header .en { font-family: var(--latin); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
+  .section > header .rule { flex: 1; height: 1px; background: var(--rule); }
+  .briefs { margin-top: 14px; columns: 2; column-gap: 32px; column-rule: 1px solid var(--rule); }
+  .brief { break-inside: avoid; padding: 14px 0; border-bottom: 1px solid var(--rule); overflow: hidden; }
+  .brief .thumb { float: right; width: 96px; height: 72px; object-fit: cover; margin: 0 0 8px 12px; border: 1px solid var(--rule); filter: sepia(.12) saturate(.92); }
+  .brief h4 { font-size: 17px; font-weight: 600; line-height: 1.55; }
+  .brief h4 a { text-decoration: none; }
+  .brief h4 a:hover { color: var(--seal); }
+  .brief p { margin-top: 6px; font-size: 14px; color: var(--ink-soft); text-align: justify; }
+  .brief .meta { font-size: 12.5px; color: var(--ink-faint); }
+  .brief .meta b { color: var(--seal); font-weight: 600; }
+  .brief .meta a { color: inherit; }
+
+  /* 往期 */
+  .archive { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; }
+  .archive h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
+  .archive ul { list-style: none; margin-top: 10px; columns: 2; column-gap: 32px; }
+  .archive li { font-size: 13.5px; padding: 3px 0; break-inside: avoid; }
+  .archive a { color: var(--ink-soft); text-decoration: none; }
+  .archive a:hover { color: var(--seal); }
+  .archive .all { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--seal); text-decoration: none; letter-spacing: .1em; }
+  .archive .all:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .colophon { margin-top: 46px; border-top: 1px solid var(--rule); padding-top: 16px; font-size: 12.5px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .colophon .seal-mark { font-family: var(--latin); font-size: 18px; font-weight: 600; color: var(--seal); letter-spacing: .04em; }
+
+  /* 本期数字 */
+  .stats { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding: 16px 0 14px; }
+  .stat { flex: 1; min-width: 96px; text-align: center; border-left: 1px solid var(--rule); padding: 0 6px; }
+  .stat:first-child { border-left: none; }
+  .stat b { display: block; font-family: var(--latin); font-size: 27px; font-weight: 600; color: var(--seal); line-height: 1.2; }
+  .stat span { font-size: 12px; color: var(--ink-faint); letter-spacing: .12em; }
+
+  /* 版面导航 / 版面号 / 头版导读（桌面隐藏，移动端启用） */
+  .tabs, .folio, .toc, .next-page { display: none; }
+  .page-front { display: contents; }
+
+  @media (max-width: 768px) {
+    .sheet { padding: 26px 16px 56px; }
+    .headline .lede::first-letter { font-size: 2em; }
+
+    /* 报耳 tab 条 */
+    .tabs {
+      display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      position: sticky; top: 0; z-index: 6;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--rule-dark);
+      margin: 0 -16px; padding: 0 8px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button { flex: none; appearance: none; border: none; background: none; font-family: inherit; font-size: 14px; letter-spacing: .12em; color: var(--ink-soft); padding: 9px 11px; position: relative; cursor: pointer; }
+    .tabs button.active { color: var(--seal); font-weight: 600; }
+    .tabs button.active::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: -1px; height: 3px; background: var(--rule-dark); }
+
+    /* 一次只显示一个版面 */
+    .page-front, .section { display: none; }
+    .page-front.active { display: block; }
+    .section.active { display: block; margin-top: 14px; }
+    .folio { display: block; font-size: 12px; color: var(--ink-faint); letter-spacing: .18em; margin: 12px 0 2px; }
+
+    /* 题图放大为横幅 */
+    .briefs { columns: 1; margin-top: 4px; }
+    .brief .thumb { display: block; float: none; width: 100%; height: 148px; margin: 8px 0; }
+    .archive ul { columns: 1; }
+
+    /* 头版导读 */
+    .toc { display: block; margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 12px; }
+    .toc h3 { font-size: 15px; letter-spacing: .3em; color: var(--ink-soft); }
+    .toc-row { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; appearance: none; border: none; border-bottom: 1px solid var(--rule); background: none; font-family: inherit; font-size: 14px; color: var(--ink); padding: 10px 0; cursor: pointer; }
+    .toc-folio { font-family: var(--latin); color: var(--seal); font-weight: 600; flex: none; }
+    .toc-name { font-weight: 600; flex: none; }
+    .toc-titles { flex: 1; font-size: 12.5px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toc-go { flex: none; font-size: 12px; color: var(--seal); }
+
+    /* 翻版按钮 */
+    .next-page { display: block; margin: 22px 0 0 auto; appearance: none; border: 1px solid var(--rule-dark); background: none; font-family: inherit; font-size: 13.5px; letter-spacing: .1em; color: var(--ink); padding: 9px 16px; cursor: pointer; }
+    .next-page:active { background: var(--ink); color: var(--paper); }
+
+    /* 统计栏两行 */
+    .stat { flex: 0 0 50%; border-left: none; border-top: 1px solid var(--rule); padding: 10px 6px 2px; }
+    .stat:nth-child(-n+2) { border-top: none; }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+<header class="masthead">
+    <p class="kicker">The AI Morning Post</p>
+    <h1 class="mast">Hi, AI<span class="dot">.</span></h1>
+    <p class="motto">一份 AI 标记的晨报 · 每天早上八点，从全网搜罗人工智能领域的新鲜事。</p>
+  </header>
+  <div class="dateline">
+    <span>2026 年 10 月 11 日 · 星期日</span>
+    <span class="no">第 5 期</span>
+    <span>晨间八时印行</span>
+  </div>
+  <nav class="tabs" aria-label="版面导航">
+    <button data-page="a1" class="active">头版</button>
+    <button data-page="a2">要闻</button>
+    <button data-page="a3">产品</button>
+    <button data-page="a4">Agent</button>
+    <button data-page="a5">开源</button>
+    <button data-page="a6">资本</button>
+    <button data-page="a7">社区</button>
+    <button data-page="a8">观点</button>
+  </nav>
+  <div class="double-rule"></div>
+
+  <div class="page-front" data-page="a1">
+  <section class="headline">
+    <span class="label">今日头条</span>
+    <h2><a href="https://arstechnica.com/gadgets/2026/10/ukraines-drones-knock-out-ai-data-center-belonging-to-russias-google/" target="_blank" rel="noopener">乌克兰无人机炸毁「俄罗斯谷歌」的 AI 数据中心</a></h2>
+    <p class="meta"><b>ArsTechnica AI</b> · 06:04</p>
+    <a href="https://arstechnica.com/gadgets/2026/10/ukraines-drones-knock-out-ai-data-center-belonging-to-russias-google/" target="_blank" rel="noopener"><img class="hero" src="https://cdn.arstechnica.net/wp-content/uploads/2026/10/yandex-data-center_sasovo-ryazan-russia.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></a>
+    <p class="lede">乌克兰无人机打击命中俄罗斯科技巨头 Yandex 五座数据中心中的两座。Yandex 因运营着俄罗斯最流行的搜索引擎而被称为「俄罗斯的谷歌」，受损后其 AI 聊天服务已难以维持，………</p>
+    <a class="goto" href="https://arstechnica.com/gadgets/2026/10/ukraines-drones-knock-out-ai-data-center-belonging-to-russias-google/" target="_blank" rel="noopener">阅读全文 ↗</a>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b>32</b><span>条资讯</span></div>
+<div class="stat"><b>0</b><span>篇论文</span></div>
+<div class="stat"><b>8</b><span>个开源新仓库</span></div>
+<div class="stat"><b>★2908</b><span>最热仓库</span></div>
+<div class="stat"><b>8</b><span>家来源</span></div>
+  </section>
+
+  <section class="toc">
+    <h3>本期版面</h3>
+    <button class="toc-row" data-goto="a2">
+      <span class="toc-folio">A2</span>
+      <span class="toc-name">要闻</span>
+      <span class="toc-titles">这届 AI PC，太烧心了；特斯拉FSD，在欧洲被打回原形</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a3">
+      <span class="toc-folio">A3</span>
+      <span class="toc-name">产品与发布</span>
+      <span class="toc-titles">纳德拉：应该默认所有 AI 模型都「已被攻陷」；纳德拉称 AI 模型需要「紧急制动」</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a4">
+      <span class="toc-folio">A4</span>
+      <span class="toc-name">Agent 动态</span>
+      <span class="toc-titles">为什么 ChatGPT 总爱在标题里塞色情赌博小广告？；AI 编程 Agent 生成更多代码，但没有生成更多软件</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a5">
+      <span class="toc-folio">A5</span>
+      <span class="toc-name">开源与社区</span>
+      <span class="toc-titles">模型开放之后，AI能力为什么仍难以复用？；CLAUDE.md 还是 AGENTS.md？Anthropic 的答案是：以后都不用</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a6">
+      <span class="toc-folio">A6</span>
+      <span class="toc-name">行业与资本</span>
+      <span class="toc-titles">英伟达洽购美国「开放」模型初创 Reflection AI；OpenAI 只用 15 天，就杀死了估值 100 亿美元的 Jev？</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a7">
+      <span class="toc-folio">A7</span>
+      <span class="toc-name">社区热议</span>
+      <span class="toc-titles">Talorys：跑在 Cloudflare 免费额度上的自托管个人 AI Agent；近期的 AI 模型难以复现一项人类算法创新</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+<button class="toc-row" data-goto="a8">
+      <span class="toc-folio">A8</span>
+      <span class="toc-name">观点与随笔</span>
+      <span class="toc-titles">Anthropic 的 Agent 在政府网站提交了 20 份签证申请；Deno 并入 Cloudflare</span>
+      <span class="toc-go">阅读本版 →</span>
+    </button>
+  </section>
+  </div>
+
+  <section class="section" data-page="a2">
+    <div class="folio">第 A2 版 · 要闻 · 共 4 条</div>
+    <header><h3>要闻</h3><span class="en">Top Stories</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【爱范儿】</b>16:28</div>
+    <img class="thumb" src="https://s3.ifanr.com/wp-content/uploads/2026/10/lark2pad-1791620831413-1.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.ifanr.com/1683688?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=" target="_blank" rel="noopener">这届 AI PC，太烧心了</a></h4>
+    <p>AI PC 还没火，先被 AI 背刺了。 10 月 9 日，技嘉宣布，旗下全部 B760 和 H610 主板将通过 BIOS 更新，支持预计 2027 年初推出的新款英特尔 LGA1700 处理器， 其中赫然包括 DDR4 主板； 「新三年，旧三年，缝缝补补又三年」，DDR4 的老树发新芽自然不是情怀作祟，而是成本与销量的双重夹击。 市场研究机构 Omdia 的估算显示，内存与 SSD 在 PC 物料成本中的占比，已从通常的约 15% 一路涨到接近 40%。 与之伴随的，另一家市场研究机构 IDC 的初步数据则显示……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【量子位】</b>14:59</div>
+    
+    <h4><a href="https://www.qbitai.com/2026/10/502467.html" target="_blank" rel="noopener">特斯拉FSD，在欧洲被打回原形</a></h4>
+    <p>马斯克反而发文道谢？……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【爱范儿】</b>08:14</div>
+    <img class="thumb" src="https://s3.ifanr.com/wp-content/uploads/2026/10/iPhone.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.ifanr.com/1683465?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=" target="_blank" rel="noopener">早报｜供应链回应iPhone 18 Pro砍单传闻/小米、华为手机同日调价/山姆拟限制亲友卡换绑</a></h4>
+    <p>曝苹果削减 iPhone 18 Pro 订单，供应链称总量变化不大 苹果调整并购团队架构，7 年来首次重新归入财务部门 豆包据称在建设水电燃气缴费等生活服务能力 小米 17 Ultra 官网全系涨价 1000 元，华为 nova 16 系列也调价 OpenAI 等公司推演重大 AI 事故后的公众与政策应对 保时捷计划提高顶级车型平均售价约 20%，压缩衍生版本 IDC：第三季度全球 PC 出货量下降 20.1%，旺季未现 英国皇家邮政承认广告使用 AI 配音，已故演员家属质疑声音被复刻 曾被字节辞退的田柯宇获近 3……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【ArsTechnica AI】</b>02:44</div>
+    <img class="thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/10/nikon1-1152x648.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://arstechnica.com/science/2026/10/winning-nikon-small-world-in-motion-video-disqualified-for-ai-use/" target="_blank" rel="noopener">AI 出违规操作后，尼康 Small World in Motion 换了冠军</a></h4>
+    <p>上月的获奖者是中国清华大学的徐宁，作品拍到罕见呼吸系统疾病患儿气道里纤毛摆动。但随后的质疑导致其被取消资格，………</p>
+  </article></div>
+    <button class="next-page" data-goto="a3">下一版 · 产品 →</button>
+  </section>
+<section class="section" data-page="a3">
+    <div class="folio">第 A3 版 · 产品与发布 · 共 6 条</div>
+    <header><h3>产品与发布</h3><span class="en">Products & Launches</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【The Verge AI】</b>06:10</div>
+    <img class="thumb" src="https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK178_Satya_Nadella_B.jpg?quality=90&amp;#038;strip=all&amp;#038;crop=0,0,100,100" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised" target="_blank" rel="noopener">纳德拉：应该默认所有 AI 模型都「已被攻陷」</a></h4>
+    <p>微软 CEO 在 X 上长文阐述对高阶 AI 模型风险的看法：不能再接受把 AI 当作「一层套一层的黑箱」、对其建议和行动照单全收的世界，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>05:47</div>
+    
+    <h4><a href="https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/" target="_blank" rel="noopener">纳德拉称 AI 模型需要「紧急制动」</a></h4>
+    <p>微软 CEO 周六上午发文：是时候「退一步，重新评估 AI 的信任架构」了。……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>03:50</div>
+    
+    <h4><a href="https://techcrunch.com/2026/10/10/apple-discloses-deal-to-hire-team-and-license-tech-from-personalized-podcast-startup-huxe/" target="_blank" rel="noopener">苹果挖走个性化播客创业公司 Huxe 团队并授权其技术</a></h4>
+    <p>披露的交易包括招聘团队与授权技术——苹果是想进 AI 生成播客的生意吗？……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【The Verge AI】</b>02:52</div>
+    <img class="thumb" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/distrokid_logo_og_image.jpg?quality=90&amp;#038;strip=all&amp;#038;crop=0,0,100,100" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit" target="_blank" rel="noopener">DistroKid 应环球音乐诉讼悄悄下架歌曲</a></h4>
+    <p>不少音乐人在社交媒体抱怨作品被无通知下架。DistroKid 向 The Verge 确认：下架是对环球音乐 9 月起诉主张的直接回应，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>23:00</div>
+    
+    <h4><a href="https://techcrunch.com/2026/10/10/3-days-to-disrupt-2026-meet-the-startups-before-they-hit-mainstream/" target="_blank" rel="noopener">距 TechCrunch Disrupt 2026 还有 3 天：先认识这些初创公司</a></h4>
+    <p>10 月 13-15 日，300 多家初创公司将在旧金山向 1 万名科技领袖展示成果，另有 250 多位讲者在 200 多场活动里分享洞察。……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【The Verge AI】</b>22:41</div>
+    <img class="thumb" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&amp;#038;strip=all&amp;#038;crop=0,0,100,100" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.theverge.com/ai-artificial-intelligence/1009286/anthropic-is-cutting-off-its-internal-evaluations-from-the-internet" target="_blank" rel="noopener">Anthropic 把内部评测与互联网彻底断开</a></h4>
+    <p>在最近一连串 AI Agent 逃出「围栏」的高调事件后，Anthropic 切断了所有内部评测的联网。周五的报告中详述了「模型的意外行为」，包括提交虚假标题………</p>
+  </article></div>
+    <button class="next-page" data-goto="a4">下一版 · Agent →</button>
+  </section>
+<section class="section" data-page="a4">
+    <div class="folio">第 A4 版 · Agent 动态 · 共 4 条</div>
+    <header><h3>Agent 动态</h3><span class="en">Agent Watch</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【爱范儿】</b>10:13</div>
+    <img class="thumb" src="https://s3.ifanr.com/wp-content/uploads/2026/10/lark2pad-1791597776198-1.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.ifanr.com/1683545?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=" target="_blank" rel="noopener">为什么 ChatGPT 总爱在标题里塞色情赌博小广告？</a></h4>
+    <p>「我们必须想象西西弗斯是……成人娱乐主管？！」 如果你是 ChatGPT 的高频用户，想必从今年 8 月开始，就碰上过一种神秘现象：ChatGPT 偶尔会在自动生成的会话标题最后，加上一些意义不明的外语单词，或是来自赌博、色情小广告的片段。 图｜OpenAI Developer Community@phdsx_666 给中文会话起个英文标题倒是见怪不怪，但在标题里夹带小广告确实是全新版本。在国庆假期，我们用一晚上深挖背后可能的技术原理，得出了一些初步判断： 这不是 ChatGPT 在测试什么广告功能，也不存在隐私泄……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【ArsTechnica AI】</b>03:43</div>
+    <img class="thumb" src="https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2264559974-1152x648.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/" target="_blank" rel="noopener">AI 编程 Agent 生成更多代码，但没有生成更多软件</a></h4>
+    <p>现代 AI 编程助手和 Agent 生成大量可用代码的效率惊人，但用它写代码的人也深知，代码量不等于软件，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>01:39</div>
+    
+    <h4><a href="https://www.infoq.cn/article/e0iQfJNgepz7VigRdD61?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">Codex 和 Claude Code 都跑偏了，前 OpenAI 研究员称 Jev 出现前 AI 世界是个悲剧</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>23:26</div>
+    
+    <h4><a href="https://www.cockroachlabs.com/blog/experiment-running-hospital-code/" target="_blank" rel="noopener">五个月来把 bug 当病人、把编程 Agent 当医疗团队</a></h4>
+    
+  </article></div>
+    <button class="next-page" data-goto="a5">下一版 · 开源 →</button>
+  </section>
+<section class="section" data-page="a5">
+    <div class="folio">第 A5 版 · 开源与社区 · 共 6 条</div>
+    <header><h3>开源与社区</h3><span class="en">Open Source</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>01:10</div>
+    
+    <h4><a href="https://www.infoq.cn/article/rKRPT18fGxtjipPAeaLa?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">模型开放之后，AI能力为什么仍难以复用？</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>23:18</div>
+    
+    <h4><a href="https://www.infoq.cn/article/MAo3KoDWm9FGIcKau9AK?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">CLAUDE.md 还是 AGENTS.md？Anthropic 的答案是：以后都不用</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>22:27</div>
+    
+    <h4><a href="https://www.infoq.cn/article/SuqGY4FQ95AVzs1S0KSV?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">金融监管领域的 Harness 实践：让知识与数据驱动 Agent 稳定运行</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>22:24</div>
+    
+    <h4><a href="https://www.infoq.cn/article/8g9tlaqJFUPrb4oGO00A?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">10 秒视频很惊艳，为什么 AI 做一部短剧还是这么难？</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>22:13</div>
+    
+    <h4><a href="https://www.infoq.cn/article/o9XwsHUvCjL3eHKT7YPU?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">从 Coding 到 Running：AI Native SRE Agent 的工程实践</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>21:15</div>
+    
+    <h4><a href="https://www.infoq.cn/article/soBOt9TSckGlJlBS519y?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">比 Astra 还贵！GPT-6.1 Sol 极速版上线，社区吐槽：“500 美元套餐都撑不过一天”</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article></div>
+    <button class="next-page" data-goto="a6">下一版 · 资本 →</button>
+  </section>
+<section class="section" data-page="a6">
+    <div class="folio">第 A6 版 · 行业与资本 · 共 5 条</div>
+    <header><h3>行业与资本</h3><span class="en">Business & Funding</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【Hacker News】</b>02:48</div>
+    
+    <h4><a href="https://www.ft.com/content/052610c5-22b4-4dd4-932e-b7f9f0628b6a" target="_blank" rel="noopener">英伟达洽购美国「开放」模型初创 Reflection AI</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【InfoQ 中文】</b>23:11</div>
+    
+    <h4><a href="https://www.infoq.cn/article/qmoRIQ1TceKfKwGlXN0S?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener">OpenAI 只用 15 天，就杀死了估值 100 亿美元的 Jev？</a></h4>
+    <p>点击查看原文&gt;……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【爱范儿】</b>17:11</div>
+    <img class="thumb" src="https://s3.ifanr.com/wp-content/uploads/2026/10/cvoer-.jpg" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://www.ifanr.com/1683674?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=" target="_blank" rel="noopener">24 天估值暴涨 37 倍，这就是 AI 圈年度爽文</a></h4>
+    <p>Jev 火了，一个非文本的 AI 模型在今天拿到了由 a16Z 领投的 8.7 亿美元融资，其公司 TypeSafe 的估值直接来到了 75 亿美元。 在 9 月 15 号刚刚发布时，TypeSafe 种子轮才 4000 万美元、估值约 2 亿；24 天，估值翻了 37 倍。 根据 Jev 创始人在 X 晒出的成绩单，Jev 在几天内容就突破了 100 万用户，模型推出三周， 单日处理了数万亿 Token ，有大约三分之一的财富 500 强都在使用这款决策模型。 一时间，决策模型遍地开花。从 OpenAI 开发者大……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>05:41</div>
+    
+    <h4><a href="https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/" target="_blank" rel="noopener">非文本 AI 模型 Jev 发布数周估值即达 75 亿美元</a></h4>
+    <p>让用户和大公司兴奋的是 TypeSafe 的说法：Jev 运行明显更快、消耗的 token 远少于 LLM。……</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【TechCrunch AI】</b>22:00</div>
+    
+    <h4><a href="https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-starts-in-4-days-lock-in-your-pass-savings-of-up-to-100-before-prices-rise/" target="_blank" rel="noopener">距 TechCrunch Disrupt 2026 开幕还有 4 天</a></h4>
+    <p>10 月 13-15 日，一万名创始人、投资人与科技领袖将齐聚旧金山 Moscone West。票价优惠最高 100 美元，同类型第二张票半价。……</p>
+  </article></div>
+    <button class="next-page" data-goto="a7">下一版 · 社区 →</button>
+  </section>
+<section class="section" data-page="a7">
+    <div class="folio">第 A7 版 · 社区热议 · 共 2 条</div>
+    <header><h3>社区热议</h3><span class="en">Community Buzz</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【Hacker News】</b>18:52</div>
+    
+    <h4><a href="https://github.com/rociiu/talorys" target="_blank" rel="noopener">Talorys：跑在 Cloudflare 免费额度上的自托管个人 AI Agent</a></h4>
+    
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Hacker News】</b>06:14</div>
+    
+    <h4><a href="https://epoch.ai/publications/innovationeval" target="_blank" rel="noopener">近期的 AI 模型难以复现一项人类算法创新</a></h4>
+    
+  </article></div>
+    <button class="next-page" data-goto="a8">下一版 · 观点 →</button>
+  </section>
+<section class="section" data-page="a8">
+    <div class="folio">第 A8 版 · 观点与随笔 · 共 4 条</div>
+    <header><h3>观点与随笔</h3><span class="en">Opinions</span><div class="rule"></div></header>
+    <div class="briefs"><article class="brief">
+    <div class="meta"><b>【Simon Willison】</b>10:04</div>
+    
+    <h4><a href="https://simonwillison.net/2026/Oct/10/the-new-york-times/" target="_blank" rel="noopener">Anthropic 的 Agent 在政府网站提交了 20 份签证申请</a></h4>
+    <p>Anthropic 周五在博客中详述其 AI Agent 的活动（未点名目标网站）。但两位知情人士称，这些 Agent 通过美国国务院网站的表单提交了 20 份签证申请，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Simon Willison】</b>06:48</div>
+    
+    <h4><a href="https://simonwillison.net/2026/Oct/9/deno-is-joining-cloudflare/" target="_blank" rel="noopener">Deno 并入 Cloudflare</a></h4>
+    <p>Deno 团队 8 月刚发布了 celld 首个版本——Cloudflare Workers 里 Durable Objects 模式的开源实现。如今 Cloudflare 直接收购了 Deno，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Simon Willison】</b>23:02</div>
+    
+    <h4><a href="https://simonwillison.net/2026/Oct/9/matthew-green/" target="_blank" rel="noopener">引述 Matthew Green 谈加密的「最坏情况」</a></h4>
+    <p>人人都想显得体面，那我就来当那个提最坏可能的怪人：我们活在「Mini 密码学」世界的概率是 1%，而在功能上失去对现有公钥加密信心的概率是 15%，………</p>
+  </article>
+<article class="brief">
+    <div class="meta"><b>【Simon Willison】</b>20:54</div>
+    <img class="thumb" src="https://static.simonwillison.net/static/2026/codex-voice.webp" alt="" loading="lazy" onerror="this.remove()">
+    <h4><a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/" target="_blank" rel="noopener">我用语音给博客做了一个新功能</a></h4>
+    <p>今天上线了博客的 Newsletters 页面：收录我发过的全部 newsletter。这个功能几乎全靠语音搭建——一路聊着下来，………</p>
+  </article></div>
+    <button class="next-page" data-goto="a1">下一版 · 回头版 →</button>
+  </section>
+
+  <section class="archive">
+    <h3>往期回顾</h3>
+    <ul><li><a href="../issues/2026-10-09.html">第 3 期 · 2026-10-09</a> — 英伟达豪赌物理 AI：更安全的人形机器人与无人出租车</li>
+<li><a href="../issues/2026-10-08.html">第 2 期 · 2026-10-08</a> — 微软发布会：为 AI 重塑的硬件与 Windows</li>
+<li><a href="../issues/2026-10-07.html">第 1 期 · 2026-10-07</a> — Meshy 跻身 a16z 消费级 AI 应用月收入 Top 50，为榜单唯一 AI 3D 公司</li></ul>
+    <a class="all" href="../archive.html">查看全部往期 →</a>
+  </section>
+
+  <footer class="colophon">
+    <span><span class="seal-mark">Hi, AI</span> · 一份由 AI 标记编排的晨报</span>
+    <span>内容来自公开 RSS 源，版权归原作者所有 · <a href="https://github.com/BaoXuebin/ai-morning-post" target="_blank" rel="noopener" style="color:inherit">GitHub</a></span>
+  </footer>
+</main>
+<script>
+(function () {
+  const tabs = document.querySelectorAll('.tabs button');
+  const pages = document.querySelectorAll('[data-page]');
+  function activate(id, save) {
+    tabs.forEach((b) => b.classList.toggle('active', b.dataset.page === id));
+    pages.forEach((p) => p.classList.toggle('active', p.dataset.page === id));
+    if (save) {
+      history.replaceState(null, '', '#' + id);
+      window.scrollTo(0, 0);
+    }
+  }
+  tabs.forEach((b) => b.addEventListener('click', () => activate(b.dataset.page, true)));
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-goto]');
+    if (t) activate(t.dataset.goto, true);
+  });
+  const h = (location.hash || '#a1').slice(1);
+  activate([...tabs].some((b) => b.dataset.page === h) ? h : 'a1', false);
+})();
+</script>
+</body>
+</html>

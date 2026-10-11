@@ -414,5 +414,81 @@
   "dff2cca3f650": {
     "title": "通往自主工业 AI 的更安全的路",
     "excerpt": "工业 AI 正进入新阶段：基础模型、物理 AI 与 Agent 的进步让更复杂的工业任务自动化成为可能。但…"
+  },
+  "5cf84025cd9f": {
+    "title": "乌克兰无人机炸毁「俄罗斯谷歌」的 AI 数据中心",
+    "excerpt": "乌克兰无人机打击命中俄罗斯科技巨头 Yandex 五座数据中心中的两座。Yandex 因运营着俄罗斯最流行的搜索引擎而被称为「俄罗斯的谷歌」，受损后其 AI 聊天服务已难以维持，…"
+  },
+  "f5b9407c78b8": {
+    "title": "AI 出违规操作后，尼康 Small World in Motion 换了冠军",
+    "excerpt": "上月的获奖者是中国清华大学的徐宁，作品拍到罕见呼吸系统疾病患儿气道里纤毛摆动。但随后的质疑导致其被取消资格，…"
+  },
+  "cd0010dc4599": {
+    "title": "纳德拉：应该默认所有 AI 模型都「已被攻陷」",
+    "excerpt": "微软 CEO 在 X 上长文阐述对高阶 AI 模型风险的看法：不能再接受把 AI 当作「一层套一层的黑箱」、对其建议和行动照单全收的世界，…"
+  },
+  "216fb7f646c0": {
+    "title": "纳德拉称 AI 模型需要「紧急制动」",
+    "excerpt": "微软 CEO 周六上午发文：是时候「退一步，重新评估 AI 的信任架构」了。"
+  },
+  "5e4621b81b17": {
+    "title": "苹果挖走个性化播客创业公司 Huxe 团队并授权其技术",
+    "excerpt": "披露的交易包括招聘团队与授权技术——苹果是想进 AI 生成播客的生意吗？"
+  },
+  "ece29a47ccc9": {
+    "title": "DistroKid 应环球音乐诉讼悄悄下架歌曲",
+    "excerpt": "不少音乐人在社交媒体抱怨作品被无通知下架。DistroKid 向 The Verge 确认：下架是对环球音乐 9 月起诉主张的直接回应，…"
+  },
+  "5456ef9afa16": {
+    "title": "距 TechCrunch Disrupt 2026 还有 3 天：先认识这些初创公司",
+    "excerpt": "10 月 13-15 日，300 多家初创公司将在旧金山向 1 万名科技领袖展示成果，另有 250 多位讲者在 200 多场活动里分享洞察。"
+  },
+  "291712698f8b": {
+    "title": "Anthropic 把内部评测与互联网彻底断开",
+    "excerpt": "在最近一连串 AI Agent 逃出「围栏」的高调事件后，Anthropic 切断了所有内部评测的联网。周五的报告中详述了「模型的意外行为」，包括提交虚假标题…"
+  },
+  "11f09aada3c7": {
+    "title": "AI 编程 Agent 生成更多代码，但没有生成更多软件",
+    "excerpt": "现代 AI 编程助手和 Agent 生成大量可用代码的效率惊人，但用它写代码的人也深知，代码量不等于软件，…"
+  },
+  "fb88367da24c": {
+    "title": "五个月来把 bug 当病人、把编程 Agent 当医疗团队",
+    "excerpt": ""
+  },
+  "ad2ed31f9d7f": {
+    "title": "英伟达洽购美国「开放」模型初创 Reflection AI",
+    "excerpt": ""
+  },
+  "1bafea2579eb": {
+    "title": "非文本 AI 模型 Jev 发布数周估值即达 75 亿美元",
+    "excerpt": "让用户和大公司兴奋的是 TypeSafe 的说法：Jev 运行明显更快、消耗的 token 远少于 LLM。"
+  },
+  "920ab928e58f": {
+    "title": "距 TechCrunch Disrupt 2026 开幕还有 4 天",
+    "excerpt": "10 月 13-15 日，一万名创始人、投资人与科技领袖将齐聚旧金山 Moscone West。票价优惠最高 100 美元，同类型第二张票半价。"
+  },
+  "b904a0c62934": {
+    "title": "Talorys：跑在 Cloudflare 免费额度上的自托管个人 AI Agent",
+    "excerpt": ""
+  },
+  "32bb0016515a": {
+    "title": "近期的 AI 模型难以复现一项人类算法创新",
+    "excerpt": ""
+  },
+  "d84c38dda97b": {
+    "title": "Anthropic 的 Agent 在政府网站提交了 20 份签证申请",
+    "excerpt": "Anthropic 周五在博客中详述其 AI Agent 的活动（未点名目标网站）。但两位知情人士称，这些 Agent 通过美国国务院网站的表单提交了 20 份签证申请，…"
+  },
+  "e430c5b08df0": {
+    "title": "Deno 并入 Cloudflare",
+    "excerpt": "Deno 团队 8 月刚发布了 celld 首个版本——Cloudflare Workers 里 Durable Objects 模式的开源实现。如今 Cloudflare 直接收购了 Deno，…"
+  },
+  "862e26795e75": {
+    "title": "引述 Matthew Green 谈加密的「最坏情况」",
+    "excerpt": "人人都想显得体面，那我就来当那个提最坏可能的怪人：我们活在「Mini 密码学」世界的概率是 1%，而在功能上失去对现有公钥加密信心的概率是 15%，…"
+  },
+  "841f44b4d7b5": {
+    "title": "我用语音给博客做了一个新功能",
+    "excerpt": "今天上线了博客的 Newsletters 页面：收录我发过的全部 newsletter。这个功能几乎全靠语音搭建——一路聊着下来，…"
   }
 }
