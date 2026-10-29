@@ -10,8 +10,8 @@
 
 ## 内容来源
 
-- **中文**：量子位、雷峰网、爱范儿、Solidot（要闻）；少数派（产品与发布）；InfoQ 中文（开源与社区）
-- **英文（自动翻译为中文）**：ArsTechnica AI、arXiv API（研究前沿）；OpenAI News、The Verge AI、TechCrunch AI（产品与发布）；GitHub API（开源与社区）；Hacker News 高分帖（社区热议）；Simon Willison、MIT Tech Review（观点与随笔）
+- **中文**：量子位、机器之心（公众号 RSS）、雷峰网、爱范儿、Solidot（要闻）；少数派（产品与发布）；InfoQ 中文（开源与社区）
+- **英文（自动翻译为中文）**：ArsTechnica AI（要闻）；arXiv API、Google DeepMind（研究前沿）；OpenAI News、Google AI、Mistral AI、The Verge AI、TechCrunch AI（产品与发布）；GitHub API、Hugging Face（开源与社区）；Hacker News 高分帖（社区热议）；Simon Willison、MIT Tech Review（观点与随笔）
 - 标题含融资/收购/上市/估值等关键词的条目，跨源自动归入「行业与资本」
 - 标题提到 Claude Code、ChatGPT、Codex、ZCode、Trae、Qoder、WorkBuddy、Cursor、Copilot 等主流 Agent 产品的条目，自动归入「Agent 动态」
 - 题图从 feed 的 media/enclosure/正文首图提取，GitHub 仓库使用组织头像；无图条目保持纯文字
